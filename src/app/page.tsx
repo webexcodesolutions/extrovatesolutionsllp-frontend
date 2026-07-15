@@ -41,7 +41,7 @@ export default function Home() {
           </a>
           <a
             className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            href="mailto:hello@extrovatesolutionsllp.com"
+            href="mailto:sales@extrovatesolutionsllp.com"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -52,7 +52,7 @@ export default function Home() {
               width={16}
               height={16}
             />
-            hello@extrovatesolutionsllp.com
+            sales@extrovatesolutionsllp.com
           </a>
         </div>
       </main>
