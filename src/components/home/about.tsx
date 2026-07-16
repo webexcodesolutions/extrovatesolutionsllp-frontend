@@ -9,7 +9,7 @@ export default function AboutSection() {
           <div className="relative">
             {/* Border Frame */}
             <div className="border border-gray-300 p-4">
-              <div className="relative h-[400px] md:h-[500px]">
+              <div className="relative h-100 md:h-125">
                 <Image
                   src="/about-sample.svg"
                   alt="Extrovate Solutions"

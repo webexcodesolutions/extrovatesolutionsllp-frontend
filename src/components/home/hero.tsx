@@ -102,7 +102,7 @@ export default function Hero() {
 
             {/* Search */}
             <div className="flex items-end">
-              <button className="flex w-full items-center justify-center gap-2 bg-[#123A54] px-6 py-[14px] font-semibold text-white transition hover:bg-[#0E3046]">
+              <button className="flex w-full items-center justify-center gap-2 bg-[#123A54] px-6 py-3.5 font-semibold text-white transition hover:bg-[#0E3046]">
                 <Search size={18} />
                 Search Properties
               </button>
