@@ -60,7 +60,7 @@ export default function Header() {
             after:transition-all after:duration-300
             ${
               pathname === item.href
-                ? "text-primary after:w-full"
+                ? "after:w-full"
                 : "text-foreground/80 after:w-0 hover:text-primary hover:after:w-full"
             }
           `}
