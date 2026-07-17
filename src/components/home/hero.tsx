@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SearchableSelect } from "../shared/SearchableSelect";
 
 const cities = [
   {
@@ -118,7 +119,7 @@ export default function Hero() {
                   <MapPin size={16} />
                   Location
                 </label>
-
+                {/* 
                 <Select>
                   <SelectTrigger className="h-12 border-border bg-background w-auto min-w-37.5">
                     <SelectValue placeholder="Select City" />
@@ -131,7 +132,8 @@ export default function Hero() {
                       </SelectItem>
                     ))}
                   </SelectContent>
-                </Select>
+                </Select> */}
+                <SearchableSelect items={cities} label="Location" />
               </div>
 
               {/* Property Type */}
@@ -140,8 +142,11 @@ export default function Hero() {
                   <Building2 size={16} />
                   Property Type
                 </label>
-
-                <Select>
+                <SearchableSelect
+                  items={propertyTypes}
+                  label=" Property Type"
+                />
+                {/* <Select>
                   <SelectTrigger className="h-12 border-border bg-background w-auto min-w-37.5">
                     <SelectValue placeholder="Property Type" />
                   </SelectTrigger>
@@ -153,7 +158,7 @@ export default function Hero() {
                       </SelectItem>
                     ))}
                   </SelectContent>
-                </Select>
+                </Select> */}
               </div>
 
               {/* Budget */}
@@ -163,7 +168,7 @@ export default function Hero() {
                   Budget Range
                 </label>
 
-                <Select>
+                {/* <Select>
                   <SelectTrigger className="h-12 border-border bg-background  w-auto min-w-37.5">
                     <SelectValue placeholder="Budget Range" />
                   </SelectTrigger>
@@ -175,7 +180,9 @@ export default function Hero() {
                       </SelectItem>
                     ))}
                   </SelectContent>
-                </Select>
+                </Select> */}
+
+                <SearchableSelect items={budgets} label="Budget Range" />
               </div>
 
               {/* Search */}
