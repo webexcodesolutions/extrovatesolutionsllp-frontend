@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const navItems = [
   {
@@ -28,9 +30,10 @@ const navItems = [
 export default function Header() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const { setTheme, theme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-[#F5F5F5] shadow-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
         {/* Logo */}
         <Link href="/">
@@ -40,7 +43,7 @@ export default function Header() {
             width={200}
             height={100}
             priority
-            className="h-auto w-35 md:w-45"
+            className="h-auto w-36 md:w-44"
           />
         </Link>
 
@@ -51,66 +54,79 @@ export default function Header() {
               key={item.href}
               href={item.href}
               className={`
-                relative pb-1 font-semibold transition-all duration-300
-                after:absolute after:bottom-0 after:left-0
-                after:h-0.5 after:bg-[#1E445C]
-                after:transition-all after:duration-300
-                ${
-                  pathname === item.href
-                    ? "text-[#1E445C] after:w-full"
-                    : "text-gray-700 after:w-0 hover:text-[#1E445C] hover:after:w-full"
-                }
-              `}
+            relative pb-1 font-montserrat font-medium transition-all duration-300
+            after:absolute after:bottom-0 after:left-0
+            after:h-0.5 after:bg-primary
+            after:transition-all after:duration-300
+            ${
+              pathname === item.href
+                ? "text-primary after:w-full"
+                : "text-foreground/80 after:w-0 hover:text-primary hover:after:w-full"
+            }
+          `}
             >
               {item.name}
             </Link>
           ))}
         </nav>
 
-        {/* Desktop CTA */}
-        <button className="hidden bg-[#123A54] px-5 py-3 font-semibold text-white transition hover:bg-[#0E3046] md:block">
-          Enquire Now
-        </button>
+        {/* Desktop Actions */}
+        <div className="hidden items-center gap-4 md:flex">
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="rounded-md border border-border bg-card p-2 text-foreground transition hover:bg-muted"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden"
-          aria-label="Toggle Menu"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? (
-            <X size={30} className="dark:invert" />
-          ) : (
-            <Menu size={30} className="dark:invert" />
-          )}
-        </button>
+          <button className="rounded-md bg-primary px-5 py-3 font-montserrat font-semibold text-primary-foreground transition hover:opacity-90">
+            Enquire Now
+          </button>
+        </div>
+
+        {/* Mobile Actions */}
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="rounded-md border border-border p-2"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          <button
+            aria-label="Toggle Menu"
+            onClick={() => setIsOpen(!isOpen)}
+            className="rounded-md border border-border p-2"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation */}
       <div
         className={`overflow-hidden transition-all duration-300 md:hidden ${
-          isOpen ? "max-h-125" : "max-h-0"
+          isOpen ? "max-h-[500px]" : "max-h-0"
         }`}
       >
-        <nav className="border-t border-gray-200 bg-white">
+        <nav className="border-t border-border bg-card">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className={`block px-6 py-4 font-medium transition ${
+              className={`block px-6 py-4 font-montserrat font-medium transition ${
                 pathname === item.href
-                  ? "border-l-4 border-[#1E445C] bg-gray-300 text-[#1E445C]"
-                  : "text-gray-700 hover:bg-gray-50"
+                  ? "border-l-4 border-primary bg-muted text-primary"
+                  : "text-foreground hover:bg-muted"
               }`}
             >
               {item.name}
             </Link>
           ))}
 
-          {/* Mobile CTA */}
           <div className="p-4">
-            <button className="w-full bg-[#123A54] py-3 font-semibold text-white transition hover:bg-[#0E3046]">
+            <button className="w-full rounded-md bg-primary py-3 font-montserrat font-semibold text-primary-foreground transition hover:opacity-90">
               Enquire Now
             </button>
           </div>

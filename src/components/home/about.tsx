@@ -2,53 +2,60 @@ import Image from "next/image";
 
 export default function AboutSection() {
   return (
-    <section className="bg-[#F8F8F8] py-24">
+    <section className="bg-background py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* Left Side - Image */}
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          {/* Left Side */}
           <div className="relative">
-            {/* Border Frame */}
-            <div className="border border-gray-300 p-4">
-              <div className="relative h-[400px] md:h-[500px]">
+            <div className="overflow-hidden rounded-xl border border-border bg-card p-3 shadow-lg transition-all duration-500 hover:shadow-2xl">
+              <div className="relative h-[350px] overflow-hidden rounded-lg md:h-[500px]">
                 <Image
                   src="/about-sample.svg"
                   alt="Extrovate Solutions"
                   fill
-                  className="object-cover"
                   priority
+                  className="object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>
             </div>
           </div>
 
-          {/* Right Side - Content */}
+          {/* Right Side */}
           <div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[4px] text-[#C6A128]">
+            {/* Subtitle */}
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[4px] text-secondary">
               WHO WE ARE
             </p>
 
-            <h2 className="max-w-2xl text-4xl font-bold leading-tight text-[#123A54] md:text-6xl">
+            {/* Title */}
+            <h2 className="font-montserrat max-w-2xl text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl">
               A Journey Rooted in
               <br />
               Architectural Precision
             </h2>
 
-            <div className="mt-10 space-y-8 text-lg leading-9 text-gray-600">
+            {/* Description */}
+            <div className="mt-8 space-y-6 text-base leading-8 text-muted-foreground md:text-lg">
               <p>
-                Founded on the principles of &quot;Corporate Modernism,&quot;
-                Extrovate Solutions LLP began as a boutique advisory firm with a
-                singular vision: to treat every property investment as a
-                masterwork. Over the decades, we have evolved into a premier
-                full-service real estate partner, known for our unwavering
-                commitment to quality and architectural integrity.
+                Founded on the principles of{" "}
+                <span className="font-semibold text-foreground">
+                  Corporate Modernism
+                </span>
+                , Extrovate Solutions LLP began as a boutique advisory firm with
+                a singular vision: to treat every property investment as a
+                masterwork.
               </p>
 
               <p>
-                Our history is marked by prestigious milestones and partnerships
-                with high-net-worth investors who demand more than just square
-                footage. They demand a legacy. We have meticulously curated a
-                portfolio that reflects the intersection of functionality and
-                high-art aesthetic.
+                Over the years, we have evolved into a premier full-service real
+                estate partner, known for our unwavering commitment to quality,
+                innovation, and architectural integrity.
+              </p>
+
+              <p>
+                Our history is marked by prestigious milestones and strategic
+                partnerships with discerning investors who seek more than just
+                square footage—they seek a legacy.
               </p>
             </div>
           </div>

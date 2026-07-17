@@ -4,41 +4,42 @@ import { Target, Eye, Wallet, ArrowRight } from "lucide-react";
 
 export default function ValuesSection() {
   return (
-    <section className="bg-[#F8F8F8]">
-      <div className="mx-auto max-w-7xl border-x border-gray-200">
+    <section className="bg-background py-20 md:py-24">
+      <div className="mx-auto max-w-7xl border-x border-border">
         {/* Main Section */}
         <div className="grid gap-12 px-6 py-16 lg:grid-cols-2">
           {/* Left */}
           <div className="flex flex-col justify-center">
-            <p className="text-sm font-semibold tracking-[4px] text-[#C6A128]">
+            <p className="text-sm font-semibold uppercase tracking-[4px] text-secondary">
               OUR VALUES
             </p>
 
-            <h2 className="mt-4 text-4xl font-bold leading-tight text-[#123A54] md:text-5xl">
+            <h2 className="font-montserrat mt-4 text-4xl font-bold leading-tight text-foreground md:text-5xl">
               Excellence Through Values
             </h2>
 
-            <p className="mt-6 max-w-xl leading-8 text-gray-600">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
               Our values shape every decision we make and every service we
               provide. We are committed to integrity, quality, innovation, and
               customer satisfaction, building lasting relationships based on
               trust and excellence.
             </p>
 
-            {/* Mission */}
+            {/* Mission & Vision */}
             <div className="mt-10 space-y-6">
-              <div className="rounded-2xl bg-white p-6 shadow-md transition hover:shadow-xl">
+              {/* Mission */}
+              <div className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <div className="flex gap-5">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-gray-200">
-                    <Target size={24} className="text-[#C6A128]" />
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border bg-background">
+                    <Target size={24} className="text-secondary" />
                   </div>
 
                   <div>
-                    <h3 className="text-2xl font-semibold text-[#123A54]">
+                    <h3 className="font-montserrat text-2xl font-semibold text-foreground">
                       Our Mission
                     </h3>
 
-                    <p className="mt-2 text-gray-600">
+                    <p className="mt-2 leading-7 text-muted-foreground">
                       To deliver exceptional solutions that empower customers,
                       inspire growth, and create lasting positive impact every
                       day.
@@ -48,18 +49,18 @@ export default function ValuesSection() {
               </div>
 
               {/* Vision */}
-              <div className="rounded-2xl bg-white p-6 shadow-md transition hover:shadow-xl">
+              <div className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <div className="flex gap-5">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-gray-200">
-                    <Eye size={24} className="text-[#C6A128]" />
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border bg-background">
+                    <Eye size={24} className="text-secondary" />
                   </div>
 
                   <div>
-                    <h3 className="text-2xl font-semibold text-[#123A54]">
+                    <h3 className="font-montserrat text-2xl font-semibold text-foreground">
                       Our Vision
                     </h3>
 
-                    <p className="mt-2 text-gray-600">
+                    <p className="mt-2 leading-7 text-muted-foreground">
                       To become a trusted leader by driving innovation,
                       delivering excellence, and creating a better future for
                       everyone.
@@ -72,14 +73,14 @@ export default function ValuesSection() {
 
           {/* Right Image */}
           <div className="flex items-center justify-center">
-            <div className="overflow-hidden border border-gray-300 p-2 shadow-lg">
-              <div className="relative h-[350px] w-full sm:h-[450px] lg:h-[600px] lg:w-[500px]">
+            <div className="overflow-hidden rounded-2xl border border-border bg-card p-3 shadow-lg">
+              <div className="relative h-[350px] w-full overflow-hidden rounded-xl sm:h-[450px] lg:h-[600px] lg:w-[500px]">
                 <Image
                   src="/values/luxury-villa.jpg"
                   alt="Luxury Villa"
                   fill
-                  className="object-cover transition duration-700 hover:scale-105"
                   priority
+                  className="object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>
             </div>
@@ -87,19 +88,19 @@ export default function ValuesSection() {
         </div>
 
         {/* Bottom Banner */}
-        <div className="border-t border-gray-200 bg-white px-6 py-8">
-          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+        <div className="border-t border-border bg-card px-6 py-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex items-start gap-5">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#123A54]">
-                <Wallet size={28} className="text-white" />
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary">
+                <Wallet size={28} className="text-primary-foreground" />
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-[#123A54]">
+                <h3 className="font-montserrat text-xl font-semibold text-foreground">
                   Exclusive Financial Solutions
                 </h3>
 
-                <p className="mt-1 text-gray-600">
+                <p className="mt-2 max-w-2xl leading-7 text-muted-foreground">
                   Access bespoke mortgage rates and tailored loan assistance
                   through our elite banking partners.
                 </p>
@@ -108,7 +109,7 @@ export default function ValuesSection() {
 
             <Link
               href="/loan-assistance"
-              className="flex items-center gap-2 font-semibold tracking-wide text-[#C6A128] transition hover:gap-4"
+              className="flex items-center gap-2 font-montserrat font-semibold tracking-wide text-secondary transition-all duration-300 hover:gap-4"
             >
               LEARN ABOUT LOANS
               <ArrowRight size={18} />

@@ -44,22 +44,22 @@ const expertise = [
 
 export default function ExpertiseSection() {
   return (
-    <section className="bg-[#F8F8F8] py-20">
+    <section className="bg-background py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left Content */}
-          <div>
-            <p className="mb-4 text-sm font-semibold tracking-[4px] text-[#C6A128] uppercase">
-              Our Expertise
+          <div className="flex flex-col justify-center">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[4px] text-secondary">
+              OUR EXPERTISE
             </p>
 
-            <h2 className="text-4xl font-bold leading-tight text-[#123A54] md:text-5xl">
+            <h2 className="font-montserrat text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl">
               Delivering Excellence
               <br />
               Through Experience
             </h2>
 
-            <p className="mt-6 max-w-xl leading-8 text-gray-600">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
               Comprehensive Real Estate Solutions Tailored for You. We provide a
               full spectrum of services from residential sales to commercial
               leasing, ensuring every aspect of your real estate journey is
@@ -68,7 +68,7 @@ export default function ExpertiseSection() {
 
             <Link
               href="/contact-us"
-              className="mt-8 inline-flex items-center gap-2 bg-[#123A54] px-6 py-4 font-semibold text-white transition hover:bg-[#0E3046]"
+              className="mt-8 inline-flex w-fit items-center gap-2 rounded-md bg-primary px-6 py-4 font-montserrat font-semibold text-primary-foreground transition-all duration-300 hover:gap-3 hover:opacity-90"
             >
               Enquire Now
               <ArrowRight size={18} />
@@ -83,21 +83,21 @@ export default function ExpertiseSection() {
               return (
                 <div
                   key={item.title}
-                  className="group rounded-xl border border-gray-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#C6A128] hover:shadow-lg"
+                  className="group rounded-2xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-secondary hover:shadow-xl"
                 >
                   <div className="flex gap-4">
                     {/* Icon */}
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#C6A128]/30 bg-[#C6A128]/5">
-                      <Icon size={22} className="text-[#C6A128]" />
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-secondary/30 bg-secondary/10 transition-transform duration-300 group-hover:scale-110">
+                      <Icon size={22} className="text-secondary" />
                     </div>
 
                     {/* Content */}
                     <div>
-                      <h3 className="font-semibold text-[#123A54]">
+                      <h3 className="font-montserrat text-lg font-semibold text-foreground">
                         {item.title}
                       </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-gray-600">
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">
                         {item.description}
                       </p>
                     </div>
