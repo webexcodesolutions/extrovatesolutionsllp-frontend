@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 export const inter = Inter({
   variable: "--font-inter",
