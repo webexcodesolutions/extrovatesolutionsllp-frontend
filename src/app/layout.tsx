@@ -3,6 +3,7 @@ import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 export const inter = Inter({
   variable: "--font-inter",
@@ -22,10 +23,6 @@ export const metadata: Metadata = {
 };
 
 // app/layout.tsx
-
-import { ThemeProvider } from "@/components/theme/theme-provider";
-import Header from "@/components/header/Header";
-import Footer from "@/components/footer/Footer";
 
 export default function RootLayout({
   children,
