@@ -58,18 +58,20 @@ export function SearchableSelect({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger>
-        <Button
-          variant="outline"
-          role="combobox"
-          aria-expanded={open}
-          className="h-12 w-full justify-between"
-        >
-          {value ? items.find((city) => city.value === value)?.label : label}
+      <PopoverTrigger
+        render={
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="h-12 w-full justify-between"
+          >
+            {value ? items.find((city) => city.value === value)?.label : label}
 
-          <ChevronsUpDown className="opacity-50" />
-        </Button>
-      </PopoverTrigger>
+            <ChevronsUpDown className="opacity-50" />
+          </Button>
+        }
+      />
 
       <PopoverContent className="w-full p-0 bg-background">
         <Command>
