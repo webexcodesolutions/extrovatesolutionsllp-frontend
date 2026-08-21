@@ -1,7 +1,13 @@
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 
-const milestones = [
+const milestones: Array<{
+  year: string;
+  title: string;
+  description: string;
+  image: string;
+  side: "left" | "right";
+}> = [
   {
     year: "2010",
     title: "The Inception",

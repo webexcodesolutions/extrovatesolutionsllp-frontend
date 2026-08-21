@@ -102,7 +102,6 @@ export function PropertyCard({
 
         {/* CTA */}
         <Button
-          asChild
           variant="outline"
           className="mt-8 h-11 w-full rounded-md border-primary font-montserrat font-semibold text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
         >
