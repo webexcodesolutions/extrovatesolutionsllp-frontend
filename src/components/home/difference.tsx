@@ -84,7 +84,7 @@ export default function DifferenceSection() {
               {/* Image */}
               <div className="relative h-[220px] overflow-hidden rounded-xl">
                 <Image
-                  src="/difference/1.jpg"
+                  src="/assets/images/iso-certified.svg"
                   alt="Meeting"
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
@@ -112,7 +112,7 @@ export default function DifferenceSection() {
               {/* Image */}
               <div className="relative h-[220px] overflow-hidden rounded-xl">
                 <Image
-                  src="/difference/2.jpg"
+                  src="/assets/images/building.svg"
                   alt="Building"
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"

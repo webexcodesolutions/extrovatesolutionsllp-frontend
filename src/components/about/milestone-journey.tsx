@@ -13,7 +13,7 @@ const milestones: Array<{
     title: "The Inception",
     description:
       "Extrovate Solutions LLP founded in London with a focus on luxury residential advisory.",
-    image: "/images/milestone-2010.jpg",
+    image: "/assets/images/the-inception.svg",
     side: "left",
   },
   {
@@ -21,7 +21,7 @@ const milestones: Array<{
     title: "Global Expansion",
     description:
       "Established strategic hubs in Dubai and Singapore, managing over $5B in assets.",
-    image: "/images/milestone-2015.jpg",
+    image: "/assets/images/global-expansion.svg",
     side: "right",
   },
   {
@@ -29,7 +29,7 @@ const milestones: Array<{
     title: "Sustainable Future",
     description:
       "Launched the 'Green Legacy' initiative, committing to 100% carbon-neutral developments.",
-    image: "/images/milestone-2023.jpg",
+    image: "/assets/images/sustainable-future.svg",
     side: "left",
   },
 ];

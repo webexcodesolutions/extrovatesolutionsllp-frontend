@@ -14,7 +14,7 @@ export function AboutStory() {
             <div className="relative border border-[#d9d9d9] p-2">
               <div className="relative aspect-[1.35/1] overflow-hidden">
                 <Image
-                  src="/images/about-story.jpg"
+                  src="/assets/images/modern-building.svg"
                   alt="Modern architectural building"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
