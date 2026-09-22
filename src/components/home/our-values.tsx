@@ -76,7 +76,7 @@ export default function ValuesSection() {
             <div className="overflow-hidden rounded-2xl border border-border bg-card p-3 shadow-lg">
               <div className="relative h-[350px] w-full overflow-hidden rounded-xl sm:h-[450px] lg:h-[600px] lg:w-[500px]">
                 <Image
-                  src="/values/luxury-villa.jpg"
+                  src="/assets/images/iso-certified.svg"
                   alt="Luxury Villa"
                   fill
                   priority

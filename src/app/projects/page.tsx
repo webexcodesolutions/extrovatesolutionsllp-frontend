@@ -16,7 +16,7 @@ export const projects: Project[] = [
   {
     id: 1,
     slug: "zenith-atrium",
-    image: "/images/zenith-atrium.jpg",
+    image: "/assets/images/zenith-atrium.svg",
     title: "The Zenith Atrium",
     price: "₹4.2 Cr+",
     location: "Worli, Mumbai South",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
   {
     id: 2,
     slug: "meridian-square",
-    image: "/images/meridian-square.jpg",
+    image: "/assets/images/meridian-square.svg",
     title: "Meridian Square",
     price: "₹12 Cr+",
     location: "BKC, Mumbai",
@@ -86,7 +86,7 @@ export const projects: Project[] = [
   {
     id: 3,
     slug: "amber-residences",
-    image: "/images/amber-residences.jpg",
+    image: "/assets/images/amber-residences.svg",
     title: "Amber Residences",
     price: "₹8.5 Cr",
     location: "Koregaon Park, Pune",
@@ -121,7 +121,7 @@ export const projects: Project[] = [
   {
     id: 4,
     slug: "indigo-heights",
-    image: "/images/indigo-heights.jpg",
+    image: "/assets/images/indigo-heights.svg",
     title: "Indigo Heights",
     price: "₹2.8 Cr+",
     location: "Whitefield, Bengaluru",
@@ -156,7 +156,7 @@ export const projects: Project[] = [
   {
     id: 5,
     slug: "opal-highstreet",
-    image: "/images/opal-highstreet.jpg",
+    image: "/assets/images/opal-highstreet.svg",
     title: "Opal Highstreet",
     price: "₹1.5 Cr",
     location: "Baner Road, Pune",
@@ -191,7 +191,7 @@ export const projects: Project[] = [
   {
     id: 6,
     slug: "emerald-grove",
-    image: "/images/emerald-grove.jpg",
+    image: "/assets/images/emerald-grove.svg",
     title: "Emerald Grove",
     price: "₹15 Cr",
     location: "Electronic City, Bengaluru",
