@@ -48,7 +48,7 @@ export default function DifferenceSection() {
       <section className="relative overflow-hidden">
         <div className="relative h-[280px] md:h-[320px]">
           <Image
-            src="/stats-bg.jpg"
+            src="/assets/images/luxury_property.jpeg"
             alt="Luxury Property"
             fill
             className="object-cover"

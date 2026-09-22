@@ -43,7 +43,7 @@ const testimonials = [
     id: 4,
     name: "Sophia Bennett",
     role: "Business Owner",
-    image: "/assets/images/",
+    image: "/assets/images/helena-vance.svg",
     quote:
       "The professionalism and market expertise demonstrated by the team made our investment journey seamless and rewarding.",
   },
@@ -51,7 +51,7 @@ const testimonials = [
     id: 5,
     name: "Ethan Hayes",
     role: "Investor",
-    image: "/assets/images/",
+    image: "/assets/images/robert-sterling.svg",
     quote:
       "Their strategic advice and personalized support exceeded expectations. I would highly recommend Extrovate to anyone.",
   },
@@ -59,7 +59,7 @@ const testimonials = [
     id: 6,
     name: "Emma Wilson",
     role: "Architect",
-    image: "/assets/images/",
+    image: "/assets/images/julian-crawford.svg",
     quote:
       "Every interaction reflected their commitment to quality and transparency. A truly premium experience from start to finish.",
   },
