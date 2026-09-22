@@ -2,12 +2,17 @@
 
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI!;
+const globalForMongoose = global as typeof globalThis & { mongooseConnection?: Promise<typeof mongoose> };
 
 export async function connectDB() {
-  if (mongoose.connections[0].readyState) {
-    return;
+  const uri = process.env.MONGODB_URI;
+  if (!uri) throw new Error("MONGODB_URI is not configured. Add it to .env.local before using the API.");
+  if (mongoose.connection.readyState === 1) return mongoose;
+  globalForMongoose.mongooseConnection ??= mongoose.connect(uri, { serverSelectionTimeoutMS: 5000 });
+  try {
+    return await globalForMongoose.mongooseConnection;
+  } catch (error) {
+    globalForMongoose.mongooseConnection = undefined;
+    throw error;
   }
-
-  await mongoose.connect(MONGODB_URI);
 }

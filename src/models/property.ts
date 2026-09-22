@@ -1,8 +1,8 @@
 // models/Property.ts
 
-import mongoose from "mongoose";
+import { model, models, Schema, Types } from "mongoose";
 
-const PropertySchema = new mongoose.Schema(
+const PropertySchema = new Schema(
   {
     title: {
       type: String,
@@ -87,7 +87,7 @@ const PropertySchema = new mongoose.Schema(
     },
 
     createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "User",
     },
   },
@@ -96,5 +96,12 @@ const PropertySchema = new mongoose.Schema(
   },
 );
 
-export default mongoose.models.Property ||
-  mongoose.model("Property", PropertySchema);
+PropertySchema.add({
+  location: { type: String, default: "" },
+  developer: { type: String, default: "Extrovate Solutions LLP" },
+});
+
+PropertySchema.index({ isFeatured: 1, displayOrder: 1 });
+PropertySchema.index({ propertyType: 1, status: 1, city: 1 });
+
+export default models.Property || model("Property", PropertySchema);

@@ -1,10 +1,20 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Globe, Mail, Phone, MapPin, ChevronRight } from "lucide-react";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [subscriptionMessage, setSubscriptionMessage] = useState("");
+  const subscribe = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const response = await fetch("/api/subscriptions", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+    const payload = await response.json();
+    setSubscriptionMessage(payload.message || payload.error || "Unable to subscribe.");
+    if (response.ok) setEmail("");
+  };
   return (
     <footer className="bg-primary text-primary-foreground">
       {/* Main Footer */}
@@ -116,17 +126,21 @@ export default function Footer() {
             </p>
 
             {/* Newsletter */}
-            <div className="mt-6 flex overflow-hidden rounded-md border border-primary-foreground/20">
+            <form onSubmit={subscribe} className="mt-6 flex overflow-hidden rounded-md border border-primary-foreground/20">
               <input
                 type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
                 placeholder="Email Address"
                 className="w-full bg-card px-4 py-4 text-foreground outline-none placeholder:text-muted-foreground"
               />
 
-              <button className="bg-secondary px-6 text-secondary-foreground transition hover:opacity-90">
+              <button type="submit" aria-label="Subscribe" className="bg-secondary px-6 text-secondary-foreground transition hover:opacity-90">
                 <ChevronRight />
               </button>
-            </div>
+            </form>
+            {subscriptionMessage && <p role="status" className="mt-2 text-sm text-primary-foreground/80">{subscriptionMessage}</p>}
           </div>
         </div>
       </div>

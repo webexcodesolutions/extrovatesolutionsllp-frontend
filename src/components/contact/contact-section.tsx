@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Clock3, Mail, MapPin, Phone, Share2, Users } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -57,41 +60,11 @@ function ContactInfo() {
       </h2>
 
       <div className="mt-6 space-y-7">
-        <ContactItem
-          icon={MapPin}
-          label="Our Office"
-          children={
-            <>
-              122nd Floor, Burj Khalifa Business Suites,
-              <br />
-              Downtown Dubai, UAE
-            </>
-          }
-        />
+        <ContactItem icon={MapPin} label="Our Office">122nd Floor, Burj Khalifa Business Suites,<br />Downtown Dubai, UAE</ContactItem>
 
-        <ContactItem
-          icon={Phone}
-          label="Phone"
-          children={
-            <>
-              +971 54 555 0192
-              <br />
-              +971 50 123 4567
-            </>
-          }
-        />
+        <ContactItem icon={Phone} label="Phone">+971 54 555 0192<br />+971 50 123 4567</ContactItem>
 
-        <ContactItem
-          icon={Mail}
-          label="Email"
-          children={
-            <>
-              enquiries@extrovate.com
-              <br />
-              support@extrovate.com
-            </>
-          }
-        />
+        <ContactItem icon={Mail} label="Email">enquiries@extrovate.com<br />support@extrovate.com</ContactItem>
       </div>
 
       {/* Office Hours */}
@@ -199,6 +172,20 @@ function SocialButton({ children }: { children: React.ReactNode }) {
 }
 
 function ContactForm() {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", interest: "", message: "", consent: false });
+  const [state, setState] = useState({ loading: false, message: "", error: false });
+  const submit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!form.consent) return setState({ loading: false, message: "Please accept the privacy policy before submitting.", error: true });
+    setState({ loading: true, message: "", error: false });
+    try {
+      const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error);
+      setForm({ name: "", email: "", phone: "", interest: "", message: "", consent: false });
+      setState({ loading: false, message: payload.message, error: false });
+    } catch (error) { setState({ loading: false, message: error instanceof Error ? error.message : "Unable to submit inquiry.", error: true }); }
+  };
   return (
     <Card className="rounded-xl border-[#e5e5e5] bg-white p-0 shadow-[0_3px_18px_rgba(0,0,0,0.05)]">
       <CardContent className="p-7 sm:p-8 lg:p-9">
@@ -211,12 +198,13 @@ function ContactForm() {
           back to you within 24 hours.
         </p>
 
-        <form className="mt-7 space-y-5">
+        <form className="mt-7 space-y-5" onSubmit={submit}>
           {/* Name / Email */}
           <div className="grid gap-5 sm:grid-cols-2">
             <FormField label="Full Name">
               <Input
                 placeholder="John Doe"
+                value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} required
                 className="h-10 rounded-[5px] border-[#d5d9dd] px-3 text-[13px] text-[#333] placeholder:text-[#999]"
               />
             </FormField>
@@ -225,6 +213,7 @@ function ContactForm() {
               <Input
                 type="email"
                 placeholder="john@example.com"
+                value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} required
                 className="h-10 rounded-[5px] border-[#d5d9dd] px-3 text-[13px] text-[#333] placeholder:text-[#999]"
               />
             </FormField>
@@ -235,12 +224,13 @@ function ContactForm() {
             <FormField label="Phone Number">
               <Input
                 placeholder="+1 (555) 000-0000"
+                value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} required
                 className="h-10 rounded-[5px] border-[#d5d9dd] px-3 text-[13px] text-[#333] placeholder:text-[#999]"
               />
             </FormField>
 
             <FormField label="Interest">
-              <Select>
+              <Select value={form.interest} onValueChange={(interest) => setForm({ ...form, interest: interest ?? "" })}>
                 <SelectTrigger className="h-10 rounded-[5px] border-[#d5d9dd] text-[13px] text-[#555]">
                   <SelectValue placeholder="Select Property Type" />
                 </SelectTrigger>
@@ -260,6 +250,7 @@ function ContactForm() {
           <FormField label="Your Message">
             <Textarea
               placeholder="Tell us about your project or enquiry..."
+              value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} required
               className="min-h-[100px] resize-none rounded-[5px] border-[#d5d9dd] px-3 py-3 text-[13px] leading-5 text-[#333] placeholder:text-[#999]"
             />
           </FormField>
@@ -268,6 +259,7 @@ function ContactForm() {
           <label className="flex items-start gap-2 text-[11px] leading-4 text-[#555]">
             <input
               type="checkbox"
+              checked={form.consent} onChange={(event) => setForm({ ...form, consent: event.target.checked })}
               className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded border-[#ccc]"
             />
 
@@ -288,8 +280,9 @@ function ContactForm() {
             type="submit"
             className="h-10 rounded-[5px] bg-[#c29c1e] px-7 text-[10px] font-semibold uppercase tracking-[0.7px] text-white hover:bg-[#aa8715]"
           >
-            Submit Inquiry
+            {state.loading ? "Submitting…" : "Submit Inquiry"}
           </Button>
+          {state.message && <p role="status" className={`text-xs ${state.error ? "text-red-600" : "text-green-700"}`}>{state.message}</p>}
         </form>
       </CardContent>
     </Card>
