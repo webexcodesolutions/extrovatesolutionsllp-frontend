@@ -18,7 +18,7 @@ const testimonials = [
     id: 1,
     name: "Julian Crawford",
     role: "Tech Entrepreneur",
-    image: "/testimonials/client-1.jpg",
+    image: "/assets/images/julian-crawford.svg",
     quote:
       "Extrovate didn't just find me a house; they found me a masterpiece. Their attention to architectural detail and professional guidance during the closing process was unparalleled.",
   },
@@ -26,7 +26,7 @@ const testimonials = [
     id: 2,
     name: "Helena Vance",
     role: "Portfolio Manager",
-    image: "/testimonials/client-2.jpg",
+    image: "/assets/images/helena-vance.svg",
     quote:
       "The loan assistance program was a game-changer for our investment portfolio. The rates they secured were significantly better than what we found independently. Truly a full-service experience.",
     featured: true,
@@ -35,7 +35,7 @@ const testimonials = [
     id: 3,
     name: "Robert Sterling",
     role: "Art Collector",
-    image: "/testimonials/client-3.jpg",
+    image: "/assets/images/robert-sterling.svg",
     quote:
       "I've worked with many real estate firms, but Extrovate's commitment to 'The Frame' aesthetic and their transparent communication sets them in a league of their own.",
   },
@@ -43,7 +43,7 @@ const testimonials = [
     id: 4,
     name: "Sophia Bennett",
     role: "Business Owner",
-    image: "/testimonials/client-1.jpg",
+    image: "/assets/images/",
     quote:
       "The professionalism and market expertise demonstrated by the team made our investment journey seamless and rewarding.",
   },
@@ -51,7 +51,7 @@ const testimonials = [
     id: 5,
     name: "Ethan Hayes",
     role: "Investor",
-    image: "/testimonials/client-2.jpg",
+    image: "/assets/images/",
     quote:
       "Their strategic advice and personalized support exceeded expectations. I would highly recommend Extrovate to anyone.",
   },
@@ -59,7 +59,7 @@ const testimonials = [
     id: 6,
     name: "Emma Wilson",
     role: "Architect",
-    image: "/testimonials/client-3.jpg",
+    image: "/assets/images/",
     quote:
       "Every interaction reflected their commitment to quality and transparency. A truly premium experience from start to finish.",
   },

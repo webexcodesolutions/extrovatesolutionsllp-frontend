@@ -8,7 +8,7 @@ export const projects = [
     title: "The Grand Residence",
     price: "$2.4M",
     tag: "Luxury",
-    image: "/images/property-1.jpg",
+    image: "/assets/images/the-obsidian-estate.svg",
     description:
       "An exceptional residence combining contemporary architecture with refined interiors and premium amenities.",
     features: [
@@ -32,7 +32,7 @@ export const projects = [
     title: "Azure Heights",
     price: "$1.8M",
     tag: "New Launch",
-    image: "/images/property-2.jpg",
+    image: "/assets/images/azure-sky-penthouse.svg",
     description:
       "Modern apartments designed for sophisticated urban living with panoramic city views.",
     features: [
@@ -56,7 +56,7 @@ export const projects = [
     title: "The Metropolitan",
     price: "$950K",
     tag: "Featured",
-    image: "/images/property-3.jpg",
+    image: "/assets/images/the-garden-sanctuary.svg",
     description:
       "A thoughtfully designed urban property offering contemporary comfort in a prime location.",
     features: [

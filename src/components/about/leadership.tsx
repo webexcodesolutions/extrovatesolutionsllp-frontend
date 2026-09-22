@@ -10,17 +10,17 @@ const leaders: Leader[] = [
   {
     name: "Julian V. Extrovate",
     role: "Managing Partner & Founder",
-    image: "/images/julian-extrovate.jpg",
+    image: "/assets/images/julian-v-extrovate.svg",
   },
   {
     name: "Elena Sterling",
     role: "Chief Architectural Officer",
-    image: "/images/elena-sterling.jpg",
+    image: "/assets/images/elena-sterling.svg",
   },
   {
     name: "Marcus Thorne",
     role: "Head of Global Investments",
-    image: "/images/marcus-thorne.jpg",
+    image: "/assets/images/marcus-thorne.svg",
   },
 ];
 
