@@ -13,7 +13,7 @@ export default function AboutSection() {
                   src="/about-sample.svg"
                   alt="Extrovate Solutions"
                   fill
-                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>

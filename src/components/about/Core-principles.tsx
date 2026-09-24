@@ -31,15 +31,15 @@ const principles = [
 
 export function CorePrinciples() {
   return (
-    <section className="bg-[#faf9f7]">
+    <section className="bg-background">
       <div className="mx-auto max-w-[1280px] px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
         {/* Section Heading */}
         <div className="text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[2px] text-[#c5a021]">
+          <p className="text-xs font-semibold uppercase tracking-[2px] text-secondary">
             Core Principles
           </p>
 
-          <h2 className="mt-3 text-[28px] font-semibold leading-tight tracking-[-0.5px] text-[#164b66] sm:text-[32px]">
+          <h2 className="mt-3 text-[28px] font-semibold leading-tight tracking-[-0.5px] text-foreground sm:text-[32px]">
             The Pillars of Our Success
           </h2>
         </div>
@@ -79,7 +79,7 @@ function PrincipleCard({
           <div>
             <h3 className="text-[16px] font-semibold text-white">{title}</h3>
 
-            <p className="mt-1.5 max-w-[450px] text-[10px] leading-[1.5] text-[#a9cce5] sm:text-[11px]">
+            <p className="mt-1.5 max-w-[450px] text-xs leading-[1.5] text-[#a9cce5] sm:text-sm">
               {description}
             </p>
           </div>
@@ -90,16 +90,16 @@ function PrincipleCard({
 
   if (innovation) {
     return (
-      <Card className="rounded-none border border-[#e5c45b] bg-[#fff5d9] shadow-none lg:col-span-6 lg:row-start-2">
+      <Card className="rounded-none border border-[#e5c45b] bg-muted shadow-none lg:col-span-6 lg:row-start-2">
         <CardContent className="flex h-full items-center gap-6 p-6 sm:px-7">
-          <Icon className="h-9 w-9 shrink-0 text-[#202020]" strokeWidth={1.6} />
+          <Icon className="h-9 w-9 shrink-0 text-foreground" strokeWidth={1.6} />
 
           <div>
-            <h3 className="text-[16px] font-semibold text-[#164b66]">
+            <h3 className="text-[16px] font-semibold text-foreground">
               {title}
             </h3>
 
-            <p className="mt-1 max-w-[430px] text-[10px] leading-[1.55] text-[#555] sm:text-[11px]">
+            <p className="mt-1 max-w-[430px] text-xs leading-[1.55] text-muted-foreground sm:text-sm">
               {description}
             </p>
           </div>
@@ -109,14 +109,14 @@ function PrincipleCard({
   }
 
   return (
-    <Card className="rounded-none border-0 bg-[#e9e7e7] shadow-none lg:col-span-3">
+    <Card className="rounded-none border-0 bg-muted shadow-none lg:col-span-3">
       <CardContent className="flex h-full flex-col justify-between p-6">
-        <Icon className="h-7 w-7 text-[#164b66]" strokeWidth={1.6} />
+        <Icon className="h-7 w-7 text-foreground" strokeWidth={1.6} />
 
         <div>
-          <h3 className="text-[16px] font-semibold text-[#164b66]">{title}</h3>
+          <h3 className="text-[16px] font-semibold text-foreground">{title}</h3>
 
-          <p className="mt-1.5 text-[10px] leading-[1.5] text-[#555] sm:text-[11px]">
+          <p className="mt-1.5 text-xs leading-[1.5] text-muted-foreground sm:text-sm">
             {description}
           </p>
         </div>

@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: "About us", description: "Learn about our approach to helping you find your next property.", alternates: { canonical: "/about-us" } };
 import { AboutHero } from "@/components/about/AboutHero";
 import { AboutStory } from "@/components/about/About-story";
 import { CorePrinciples } from "@/components/about/Core-principles";

@@ -1,19 +1,50 @@
-import { z } from "zod";
 import { connectDB } from "@/db/mongodb";
 import Inquiry from "@/models/inquiry";
-
-const inquirySchema = z.object({
-  name: z.string().trim().min(2).max(100), email: z.string().trim().email(), phone: z.string().trim().min(6).max(30),
-  interest: z.string().trim().min(2).max(80), message: z.string().trim().min(10).max(2000),
-});
-
+import Outbox from "@/models/outbox";
+import { inquirySchema, POLICY_VERSION } from "@/lib/forms";
+import { apiError, HttpError, readJson } from "@/lib/api";
+import { protectForm } from "@/lib/rate-limit";
+import { PropertyRepository } from "@/repositories/property.repository";
+import { processOutbox } from "@/lib/process-outbox";
 export async function POST(request: Request) {
   try {
-    const data = inquirySchema.parse(await request.json());
-    await connectDB();
-    const inquiry = await Inquiry.create(data);
-    return Response.json({ id: inquiry._id, message: "Your inquiry has been received." }, { status: 201 });
+    const { website, ...data } = inquirySchema.parse(
+      await readJson(request, 16000),
+    );
+    if (website)
+      return Response.json(
+        { message: "Your inquiry has been received." },
+        { status: 201 },
+      );
+    const db = await connectDB();
+    await protectForm(request, "inquiry", data.email);
+    if (
+      data.propertySlug &&
+      !(await new PropertyRepository().findBySlug(data.propertySlug))
+    )
+      throw new HttpError(
+        400,
+        "This property is no longer available. Please submit a general inquiry.",
+      );
+    // A transaction keeps the lead and its notification durable together.
+    await db.connection.transaction(async (session) => {
+      const [inquiry] = await Inquiry.create(
+        [{ ...data, consentAt: new Date(), policyVersion: POLICY_VERSION }],
+        { session },
+      );
+      await Outbox.create(
+        [{ kind: "inquiry.created", recordId: inquiry._id }],
+        { session },
+      );
+    });
+
+    //  Process the outbox
+    await processOutbox();
+    return Response.json(
+      { message: "Your inquiry has been received. Our team will be in touch." },
+      { status: 201 },
+    );
   } catch (error) {
-    return Response.json({ error: error instanceof z.ZodError ? "Please complete all fields with valid information." : error instanceof Error ? error.message : "Unable to submit inquiry" }, { status: error instanceof z.ZodError ? 400 : 500 });
+    return apiError(error, "inquiry.create");
   }
 }

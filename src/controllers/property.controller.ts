@@ -3,9 +3,7 @@
 import { PropertyService } from "@/services/property.service";
 import type { PropertyFilters } from "@/repositories/property.repository";
 
-interface PropertyData {
-  [key: string]: unknown;
-}
+import type { PropertyInput as PropertyData } from "@/lib/property-schema";
 
 export class PropertyController {
   private service = new PropertyService();

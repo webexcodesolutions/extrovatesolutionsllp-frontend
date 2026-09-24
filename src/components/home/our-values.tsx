@@ -79,7 +79,7 @@ export default function ValuesSection() {
                   src="/assets/images/iso-certified.svg"
                   alt="Luxury Villa"
                   fill
-                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>
@@ -101,8 +101,7 @@ export default function ValuesSection() {
                 </h3>
 
                 <p className="mt-2 max-w-2xl leading-7 text-muted-foreground">
-                  Access bespoke mortgage rates and tailored loan assistance
-                  through our elite banking partners.
+                  Discuss financing requirements and the documents you may need with our team.
                 </p>
               </div>
             </div>

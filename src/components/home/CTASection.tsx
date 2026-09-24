@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { site } from "@/lib/site";
 
 export default function CTASection() {
   return (
@@ -7,7 +8,7 @@ export default function CTASection() {
       <div
         className="relative"
         style={{
-          backgroundImage: "url('/cta-bg.jpg')",
+
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -16,7 +17,7 @@ export default function CTASection() {
         <div className="absolute inset-0 bg-primary/90" />
 
         {/* Optional Pattern */}
-        <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-10" />
+
 
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:py-24">
@@ -33,9 +34,7 @@ export default function CTASection() {
 
             {/* Description */}
             <p className="mt-6 max-w-2xl text-base leading-8 text-primary-foreground/80 md:text-lg">
-              Connect with our senior consultants today for a private viewing of
-              our exclusive off-market portfolio and discover investment
-              opportunities crafted for generations.
+              Connect with our team to discuss available properties and arrange the next steps in your search.
             </p>
 
             {/* Buttons */}
@@ -47,13 +46,13 @@ export default function CTASection() {
                 CONSULT YOUR EXPERT
               </Link>
 
-              <Link
-                href="/brochure.pdf"
-                target="_blank"
+              {site.brochureUrl && <a
+                href={site.brochureUrl}
+                target="_blank" rel="noreferrer"
                 className="rounded-md border border-primary-foreground/30 bg-background/10 px-8 py-4 text-center font-montserrat text-sm font-semibold uppercase tracking-[2px] text-primary-foreground backdrop-blur-sm transition-all duration-300 hover:bg-background hover:text-foreground"
               >
                 DOWNLOAD BROCHURE
-              </Link>
+              </a>}
             </div>
           </div>
         </div>

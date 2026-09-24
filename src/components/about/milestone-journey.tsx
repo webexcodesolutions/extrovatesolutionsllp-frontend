@@ -1,45 +1,15 @@
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 
-const milestones: Array<{
-  year: string;
-  title: string;
-  description: string;
-  image: string;
-  side: "left" | "right";
-}> = [
-  {
-    year: "2010",
-    title: "The Inception",
-    description:
-      "Extrovate Solutions LLP founded in London with a focus on luxury residential advisory.",
-    image: "/assets/images/the-inception.svg",
-    side: "left",
-  },
-  {
-    year: "2015",
-    title: "Global Expansion",
-    description:
-      "Established strategic hubs in Dubai and Singapore, managing over $5B in assets.",
-    image: "/assets/images/global-expansion.svg",
-    side: "right",
-  },
-  {
-    year: "2023",
-    title: "Sustainable Future",
-    description:
-      "Launched the 'Green Legacy' initiative, committing to 100% carbon-neutral developments.",
-    image: "/assets/images/sustainable-future.svg",
-    side: "left",
-  },
-];
+import { milestones } from "@/lib/approved-content";
 
 export function MilestoneJourney() {
+  if (!milestones.length) return null;
   return (
-    <section className="bg-white">
+    <section className="bg-card">
       <div className="mx-auto max-w-[1280px] px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
         {/* Heading */}
-        <h2 className="text-center text-[28px] font-semibold tracking-[-0.5px] text-[#164b66] sm:text-[32px]">
+        <h2 className="text-center text-[28px] font-semibold tracking-[-0.5px] text-foreground sm:text-[32px]">
           Our Milestone Journey
         </h2>
 
@@ -49,8 +19,8 @@ export function MilestoneJourney() {
           <div className="absolute bottom-0 left-1/2 top-0 hidden w-px -translate-x-1/2 bg-[#d8dde0] md:block" />
 
           <div className="space-y-14 md:space-y-0">
-            {milestones.map((milestone, index) => (
-              <Milestone key={milestone.year} {...milestone} index={index} />
+            {milestones.map((milestone) => (
+              <Milestone key={milestone.year} {...milestone} />
             ))}
           </div>
         </div>
@@ -65,7 +35,6 @@ type MilestoneProps = {
   description: string;
   image: string;
   side: "left" | "right";
-  index: number;
 };
 
 function Milestone({
@@ -74,7 +43,6 @@ function Milestone({
   description,
   image,
   side,
-  index,
 }: MilestoneProps) {
   const isLeft = side === "left";
 
@@ -107,11 +75,11 @@ function Milestone({
               {year}
             </div>
 
-            <h3 className="mt-[-3px] text-[15px] font-semibold text-[#164b66] sm:text-[16px]">
+            <h3 className="mt-[-3px] text-[15px] font-semibold text-foreground sm:text-[16px]">
               {title}
             </h3>
 
-            <p className="mt-2 text-[10px] leading-[1.55] text-[#555] sm:text-[11px]">
+            <p className="mt-2 text-xs leading-[1.55] text-muted-foreground sm:text-sm">
               {description}
             </p>
           </div>

@@ -16,11 +16,12 @@ import {
   UserRound,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import type { PropertyFeature } from "@/lib/property-schema";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
-const featureIcons: Record<string, LucideIcon> = {
+const featureIcons: Record<PropertyFeature["icon"], LucideIcon> = {
   beds: BedDouble,
   baths: Bath,
   area: Maximize,
@@ -33,11 +34,6 @@ const featureIcons: Record<string, LucideIcon> = {
   villa: Home,
   office: Building2,
   capacity: UserRound,
-};
-
-export type PropertyFeature = {
-  label: string;
-  icon: keyof typeof featureIcons;
 };
 
 export type PropertyCardProps = {
@@ -72,7 +68,7 @@ export function PropertyCard({
   actionLabel = "VIEW DETAILS",
 }: PropertyCardProps) {
   return (
-    <Card className="group flex h-full flex-col overflow-hidden rounded-xl border-[#e8e8e8] bg-white p-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <Card className="group flex h-full flex-col overflow-hidden rounded-xl border-border bg-card p-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       {/* Image */}
       <div className="relative h-[150px] overflow-hidden sm:h-[160px]">
         <Image
@@ -86,7 +82,7 @@ export function PropertyCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
 
         <Badge
-          className={`absolute left-3 top-3 rounded-md px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wide hover:opacity-100 ${tagStyles[tagVariant]}`}
+          className={`absolute left-3 top-3 rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wide hover:opacity-100 ${tagStyles[tagVariant]}`}
         >
           {tag}
         </Badge>
@@ -96,7 +92,7 @@ export function PropertyCard({
       <CardContent className="flex flex-1 flex-col p-4">
         {/* Title + Price */}
         <div className="flex items-start justify-between gap-3">
-          <h3 className="min-w-0 truncate text-[16px] font-semibold leading-5 text-[#16445f]">
+          <h3 className="min-w-0 truncate text-[16px] font-semibold leading-5 text-foreground">
             {title}
           </h3>
 
@@ -106,14 +102,14 @@ export function PropertyCard({
         </div>
 
         {/* Location */}
-        <div className="mt-1.5 flex items-center gap-1.5 truncate text-[11px] text-[#555]">
+        <div className="mt-1.5 flex items-center gap-1.5 truncate text-sm text-muted-foreground">
           <MapPin className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
 
           <span className="truncate">{location}</span>
         </div>
 
         {/* Divider */}
-        <div className="my-3 border-t border-[#eeeeee]" />
+        <div className="my-3 border-t border-border" />
 
         {/* Features */}
         <div className="grid grid-cols-3 gap-2">
@@ -125,9 +121,9 @@ export function PropertyCard({
                 key={`${feature.icon}-${feature.label}`}
                 className="flex min-w-0 flex-col items-center justify-center gap-1.5 text-center"
               >
-                <Icon className="h-4 w-4 text-[#16445f]" strokeWidth={1.7} />
+                <Icon className="h-4 w-4 text-foreground" strokeWidth={1.7} />
 
-                <span className="truncate text-[10px] leading-4 text-[#444]">
+                <span className="truncate text-xs leading-4 text-foreground">
                   {feature.label}
                 </span>
               </div>
@@ -138,7 +134,7 @@ export function PropertyCard({
         {/* CTA */}
         <Link
           href={`/projects/${slug}`}
-          className="mt-4 flex h-9 w-full items-center justify-center rounded-md border border-[#16445f] bg-white text-[10px] font-semibold tracking-[0.8px] text-[#16445f] transition-colors hover:bg-[#16445f] hover:text-white"
+          className="mt-4 flex min-h-11 w-full items-center justify-center rounded-md border border-[#16445f] bg-card text-xs font-semibold tracking-[0.8px] text-foreground transition-colors hover:bg-[#16445f] hover:text-white"
         >
           {actionLabel}
           <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />

@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import InformationPage from "@/components/shared/InformationPage";
+export const metadata: Metadata = { title: "Loan assistance", description: "Contact our team to discuss property financing requirements.", alternates: { canonical: "/loan-assistance" } };
+export default function Loans() { return <InformationPage title="Loan assistance"><p>Contact our team to discuss the financing requirements for your property search and the next steps for your inquiry.</p><h2>Start a conversation</h2><p>Share the property you are considering, your preferred timing and a contact number. Select “Loan assistance” in the contact form. Please do not send account numbers, financial documents or identity documents through the form.</p><p>Any lending terms and eligibility must be confirmed with the relevant lender. This website does not offer an application or guarantee approval or a particular rate.</p></InformationPage>; }

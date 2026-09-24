@@ -1,308 +1,47 @@
 "use client";
+import { useId, useRef, useState } from "react";
+import Link from "next/link";
+import { site } from "@/lib/site";
+import { PROPERTY_TYPES } from "@/lib/property-schema";
+import { inquirySchema } from "@/lib/forms";
 
-import { useState } from "react";
-import { Clock3, Mail, MapPin, Phone, Share2, Users } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-
-export function ContactSection() {
-  return (
-    <main className="bg-[#faf9f7]">
-      {/* Hero */}
-      <section className="bg-[#164b66]">
-        <div className="mx-auto max-w-[1280px] px-5 py-10 sm:px-8 sm:py-12 lg:px-10">
-          <p className="text-[11px] font-semibold uppercase tracking-[1.6px] text-[#c6a227]">
-            Get In Touch
-          </p>
-
-          <h1 className="mt-2 max-w-[520px] text-[38px] font-bold leading-[1.08] tracking-[-1px] text-white sm:text-[42px]">
-            Let&apos;s Frame Your
-            <br />
-            Future.
-          </h1>
-
-          <p className="mt-4 max-w-[620px] text-[13px] leading-[1.6] text-white/85">
-            Whether you are looking for an architectural masterpiece or a
-            strategic commercial investment, our team is ready to provide
-            personalized guidance.
-          </p>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="mx-auto max-w-[1280px] px-5 py-9 sm:px-8 lg:px-10 lg:py-10">
-        <div className="grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[235px_minmax(0,1fr)]">
-          <ContactInfo />
-
-          <ContactForm />
-        </div>
-      </section>
-    </main>
-  );
-}
-
-function ContactInfo() {
-  return (
-    <aside>
-      <h2 className="text-[15px] font-semibold leading-5 text-[#164b66]">
-        Contact Information
-      </h2>
-
-      <div className="mt-6 space-y-7">
-        <ContactItem icon={MapPin} label="Our Office">122nd Floor, Burj Khalifa Business Suites,<br />Downtown Dubai, UAE</ContactItem>
-
-        <ContactItem icon={Phone} label="Phone">+971 54 555 0192<br />+971 50 123 4567</ContactItem>
-
-        <ContactItem icon={Mail} label="Email">enquiries@extrovate.com<br />support@extrovate.com</ContactItem>
-      </div>
-
-      {/* Office Hours */}
-      <div className="mt-8 rounded-xl bg-white p-4 shadow-[0_3px_14px_rgba(0,0,0,0.05)]">
-        <div className="flex items-center gap-2">
-          <Clock3 className="h-4 w-4 text-[#164b66]" />
-
-          <h3 className="text-[14px] font-semibold leading-5 text-[#164b66]">
-            Office Hours
-          </h3>
-        </div>
-
-        <div className="mt-4 space-y-3">
-          <OfficeHour day="Monday - Friday" time="09:00 AM - 06:00 PM" />
-
-          <OfficeHour day="Saturday" time="10:00 AM - 04:00 PM" />
-
-          <OfficeHour day="Sunday" time="Closed" closed />
-        </div>
-      </div>
-
-      {/* Social */}
-      <div className="mt-7">
-        <p className="text-[10px] font-medium uppercase tracking-[1px] text-[#555]">
-          Follow Us
-        </p>
-
-        <div className="mt-3 flex gap-2">
-          <SocialButton>
-            <Share2 />
-          </SocialButton>
-
-          <SocialButton>
-            <span className="text-[12px] font-bold">◎</span>
-          </SocialButton>
-
-          <SocialButton>
-            <Users />
-          </SocialButton>
-        </div>
-      </div>
-    </aside>
-  );
-}
-
-function ContactItem({
-  icon: Icon,
-  label,
-  children,
-}: {
-  icon: React.ElementType;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="flex gap-3">
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#d9edf7]">
-        <Icon className="h-4 w-4 text-[#164b66]" strokeWidth={1.7} />
-      </div>
-
-      <div className="min-w-0">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.35px] text-[#333]">
-          {label}
-        </p>
-
-        <div className="mt-1.5 text-[11px] leading-[1.6] text-[#555]">
-          {children}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function OfficeHour({
-  day,
-  time,
-  closed = false,
-}: {
-  day: string;
-  time: string;
-  closed?: boolean;
-}) {
-  return (
-    <div className="flex items-center justify-between gap-3 border-b border-[#eeeeee] pb-2.5 last:border-0 last:pb-0">
-      <span className="text-[11px] text-[#444]">{day}</span>
-
-      <span
-        className={`text-[10px] ${closed ? "text-red-500" : "text-[#28708d]"}`}
-      >
-        {time}
-      </span>
-    </div>
-  );
-}
-
-function SocialButton({ children }: { children: React.ReactNode }) {
-  return (
-    <button
-      type="button"
-      className="flex h-8 w-8 items-center justify-center rounded-full border border-[#d7d7d7] text-[#164b66] transition-colors hover:border-[#164b66] hover:bg-[#164b66] hover:text-white"
-    >
-      <span className="[&>svg]:h-4 [&>svg]:w-4">{children}</span>
-    </button>
-  );
-}
-
-function ContactForm() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", interest: "", message: "", consent: false });
-  const [state, setState] = useState({ loading: false, message: "", error: false });
-  const submit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    if (!form.consent) return setState({ loading: false, message: "Please accept the privacy policy before submitting.", error: true });
-    setState({ loading: true, message: "", error: false });
+type FormState = { loading: boolean; message: string; error: boolean; fields: Record<string, string[] | undefined> };
+export function ContactSection({ propertySlug, propertyTitle }: { propertySlug?: string; propertyTitle?: string }) {
+  const id = useId(); const pending = useRef(false);
+  const [state, setState] = useState<FormState>({ loading: false, message: "", error: false, fields: {} });
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); if (pending.current) return;
+    const form = event.currentTarget; const values = new FormData(form);
+    const data = Object.fromEntries(values); const parsed = inquirySchema.safeParse({ ...data, consent: values.get("consent") === "on", propertySlug });
+    if (!parsed.success) {
+      const fields: FormState["fields"] = {}; parsed.error.issues.forEach(issue => { fields[String(issue.path[0])] = [issue.message]; });
+      setState({ loading: false, message: "Please correct the highlighted fields.", error: true, fields }); return;
+    }
+    pending.current = true; setState({ loading: true, message: "", error: false, fields: {} });
     try {
-      const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
+      const response = await fetch("/api/inquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(parsed.data), signal: AbortSignal.timeout(15000) });
       const payload = await response.json();
-      if (!response.ok) throw new Error(payload.error);
-      setForm({ name: "", email: "", phone: "", interest: "", message: "", consent: false });
-      setState({ loading: false, message: payload.message, error: false });
-    } catch (error) { setState({ loading: false, message: error instanceof Error ? error.message : "Unable to submit inquiry.", error: true }); }
+      if (!response.ok) { setState({ loading: false, message: payload.error || "Please try again.", error: true, fields: payload.fields || {} }); return; }
+      form.reset(); setState({ loading: false, message: payload.message, error: false, fields: {} });
+    } catch { setState({ loading: false, message: "We couldn’t confirm submission. Please check your connection and try again.", error: true, fields: {} }); }
+    finally { pending.current = false; }
   };
-  return (
-    <Card className="rounded-xl border-[#e5e5e5] bg-white p-0 shadow-[0_3px_18px_rgba(0,0,0,0.05)]">
-      <CardContent className="p-7 sm:p-8 lg:p-9">
-        <h2 className="text-[24px] font-semibold leading-7 text-[#164b66]">
-          Send a Message
-        </h2>
-
-        <p className="mt-2 max-w-[600px] text-[12px] leading-[1.6] text-[#666]">
-          Fill out the form below and one of our expert consultants will get
-          back to you within 24 hours.
-        </p>
-
-        <form className="mt-7 space-y-5" onSubmit={submit}>
-          {/* Name / Email */}
-          <div className="grid gap-5 sm:grid-cols-2">
-            <FormField label="Full Name">
-              <Input
-                placeholder="John Doe"
-                value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} required
-                className="h-10 rounded-[5px] border-[#d5d9dd] px-3 text-[13px] text-[#333] placeholder:text-[#999]"
-              />
-            </FormField>
-
-            <FormField label="Email Address">
-              <Input
-                type="email"
-                placeholder="john@example.com"
-                value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} required
-                className="h-10 rounded-[5px] border-[#d5d9dd] px-3 text-[13px] text-[#333] placeholder:text-[#999]"
-              />
-            </FormField>
-          </div>
-
-          {/* Phone / Interest */}
-          <div className="grid gap-5 sm:grid-cols-2">
-            <FormField label="Phone Number">
-              <Input
-                placeholder="+1 (555) 000-0000"
-                value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} required
-                className="h-10 rounded-[5px] border-[#d5d9dd] px-3 text-[13px] text-[#333] placeholder:text-[#999]"
-              />
-            </FormField>
-
-            <FormField label="Interest">
-              <Select value={form.interest} onValueChange={(interest) => setForm({ ...form, interest: interest ?? "" })}>
-                <SelectTrigger className="h-10 rounded-[5px] border-[#d5d9dd] text-[13px] text-[#555]">
-                  <SelectValue placeholder="Select Property Type" />
-                </SelectTrigger>
-
-                <SelectContent>
-                  <SelectItem value="residential">Residential</SelectItem>
-
-                  <SelectItem value="commercial">Commercial</SelectItem>
-
-                  <SelectItem value="land">Land</SelectItem>
-                </SelectContent>
-              </Select>
-            </FormField>
-          </div>
-
-          {/* Message */}
-          <FormField label="Your Message">
-            <Textarea
-              placeholder="Tell us about your project or enquiry..."
-              value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} required
-              className="min-h-[100px] resize-none rounded-[5px] border-[#d5d9dd] px-3 py-3 text-[13px] leading-5 text-[#333] placeholder:text-[#999]"
-            />
-          </FormField>
-
-          {/* Privacy */}
-          <label className="flex items-start gap-2 text-[11px] leading-4 text-[#555]">
-            <input
-              type="checkbox"
-              checked={form.consent} onChange={(event) => setForm({ ...form, consent: event.target.checked })}
-              className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded border-[#ccc]"
-            />
-
-            <span>
-              I agree to the{" "}
-              <a
-                href="/privacy"
-                className="text-[#806500] underline underline-offset-2"
-              >
-                Privacy Policy
-              </a>{" "}
-              and terms of service.
-            </span>
-          </label>
-
-          {/* Submit */}
-          <Button
-            type="submit"
-            className="h-10 rounded-[5px] bg-[#c29c1e] px-7 text-[10px] font-semibold uppercase tracking-[0.7px] text-white hover:bg-[#aa8715]"
-          >
-            {state.loading ? "Submitting…" : "Submit Inquiry"}
-          </Button>
-          {state.message && <p role="status" className={`text-xs ${state.error ? "text-red-600" : "text-green-700"}`}>{state.message}</p>}
-        </form>
-      </CardContent>
-    </Card>
-  );
-}
-
-function FormField({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="space-y-2">
-      <Label className="text-[10px] font-semibold uppercase tracking-[0.45px] text-[#333]">
-        {label}
-      </Label>
-
-      {children}
-    </div>
-  );
+  const field = (name: string, label: string, type = "text", autoComplete?: string) => <div className="space-y-2"><label htmlFor={`${id}-${name}`} className="block text-sm font-medium">{label}</label><input id={`${id}-${name}`} name={name} type={type} autoComplete={autoComplete} required maxLength={name === "email" ? 254 : name === "phone" ? 30 : 100} minLength={name === "phone" ? 6 : name === "name" ? 2 : undefined} className="h-12 w-full rounded-md border bg-background px-3" aria-invalid={!!state.fields[name]} aria-describedby={state.fields[name] ? `${id}-${name}-error` : undefined} />{state.fields[name] && <p id={`${id}-${name}-error`} className="text-sm text-destructive">{state.fields[name]?.join(" ")}</p>}</div>;
+  return <section className="mx-auto max-w-7xl px-6 py-14"><h1 className="text-4xl font-bold">Let’s discuss your next property</h1><p className="mt-4 max-w-2xl text-muted-foreground">Tell us what you are looking for and our team will help you explore the next steps.</p>
+    <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_2fr]"><aside><h2 className="text-xl font-semibold">Contact information</h2><div className="mt-5 space-y-4">
+      {site.address && <p className="whitespace-pre-line">{site.address}</p>}{site.phone && <a className="block underline" href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}>{site.phone}</a>}{site.email && <a className="block break-all underline" href={`mailto:${site.email}`}>{site.email}</a>}
+      {!site.email && !site.phone && !site.address && <p className="text-muted-foreground">Use the inquiry form to reach our team.</p>}
+    </div></aside>
+    <form onSubmit={submit} className="space-y-6 rounded-xl border bg-card p-6 sm:p-8" aria-busy={state.loading}>
+      <h2 className="text-2xl font-semibold">Send an inquiry</h2>{propertyTitle && <p>Regarding: <Link className="underline" href={`/projects/${propertySlug}`}>{propertyTitle}</Link></p>}
+      <div className="grid gap-5 sm:grid-cols-2">{field("name", "Full name", "text", "name")}{field("email", "Email address", "email", "email")}{field("phone", "Phone number", "tel", "tel")}
+        <div className="space-y-2"><label htmlFor={`${id}-interest`} className="block text-sm font-medium">Interest</label><select id={`${id}-interest`} name="interest" required defaultValue="" className="h-12 w-full rounded-md border bg-background px-3" aria-invalid={!!state.fields.interest}><option value="" disabled>Select an interest</option>{[...PROPERTY_TYPES, "Loan assistance", "General inquiry"].map(value => <option key={value}>{value}</option>)}</select>{state.fields.interest && <p className="text-sm text-destructive">{state.fields.interest.join(" ")}</p>}</div>
+      </div>
+      <div><label className="mb-2 block text-sm font-medium" htmlFor={`${id}-message`}>Your message</label><textarea id={`${id}-message`} name="message" required minLength={10} maxLength={2000} rows={5} className="w-full rounded-md border bg-background p-3" aria-invalid={!!state.fields.message} aria-describedby={`${id}-message-help`} /><p id={`${id}-message-help`} className="text-sm text-muted-foreground">{state.fields.message?.join(" ") || "10–2,000 characters. Please do not include financial account details."}</p></div>
+      <div hidden aria-hidden="true"><label>Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
+      <label className="flex items-start gap-3 text-sm"><input name="consent" type="checkbox" required className="mt-1 size-5 shrink-0" /><span>I agree to the <Link href="/privacy-policy" className="underline">Privacy Policy</Link> and <Link href="/terms-of-service" className="underline">Terms of Service</Link> and consent to being contacted about this inquiry.</span></label>
+      <button disabled={state.loading} type="submit" className="min-h-12 rounded-md bg-primary px-6 text-primary-foreground disabled:opacity-60">{state.loading ? "Submitting…" : "Submit inquiry"}</button>
+      {state.message && <p role={state.error ? "alert" : "status"} className={state.error ? "text-destructive" : "text-foreground"}>{state.message}</p>}
+    </form></div>
+  </section>;
 }

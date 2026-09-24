@@ -4,7 +4,7 @@ export function AboutHero() {
       <div className="mx-auto flex min-h-[540px] max-w-[1536px] items-center px-10 py-20 sm:px-12 lg:px-16 xl:px-20">
         <div className="max-w-[900px]">
           {/* Eyebrow */}
-          <p className="text-[14px] font-semibold uppercase tracking-[2px] text-[#c5a021] sm:text-[16px]">
+          <p className="text-[14px] font-semibold uppercase tracking-[2px] text-secondary sm:text-[16px]">
             About Us
           </p>
 

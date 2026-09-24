@@ -7,7 +7,7 @@ export function AboutStory() {
   return (
     <>
       {/* Our Narrative */}
-      <section className="bg-[#faf9f7]">
+      <section className="bg-background">
         <div className="mx-auto max-w-[1280px] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-12 xl:gap-16">
             {/* Image */}
@@ -25,32 +25,25 @@ export function AboutStory() {
 
             {/* Content */}
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[2px] text-[#c5a021]">
+              <p className="text-xs font-semibold uppercase tracking-[2px] text-secondary">
                 Our Narrative
               </p>
 
-              <h2 className="mt-3 max-w-[520px] text-[30px] font-semibold leading-[1.12] tracking-[-0.7px] text-[#164b66] sm:text-[34px]">
+              <h2 className="mt-3 max-w-[520px] text-[30px] font-semibold leading-[1.12] tracking-[-0.7px] text-foreground sm:text-[34px]">
                 A Journey Rooted in
                 <br className="hidden sm:block" />
                 Architectural Precision
               </h2>
 
-              <div className="mt-5 max-w-[570px] space-y-4 text-[11px] leading-[1.65] text-[#555] sm:text-[12px]">
+              <div className="mt-5 max-w-[570px] space-y-4 text-sm leading-[1.65] text-muted-foreground sm:text-[12px]">
                 <p>
-                  Founded on the principles of &quot;Corporate Modernism,&quot;
-                  Extrovate Solutions LLP began as a boutique advisory firm with
-                  a singular vision: to treat every property investment as a
-                  masterwork. Over the decades, we have evolved into a premier
-                  full-service real estate partner, known for our unwavering
-                  commitment to quality and architectural integrity.
+                  We help people explore residential and commercial properties,
+                  understand their options, and plan the next steps in their search.
                 </p>
 
                 <p>
-                  Our history is marked by prestigious milestones and
-                  partnerships with high-net-worth investors who demand more
-                  than just square footage. They demand a legacy. We have
-                  meticulously curated a portfolio that reflects the
-                  intersection of functionality and high-art aesthetic.
+                  Our approach starts with your requirements: location, budget,
+                  intended use and timing. Contact our team to discuss how we can help.
                 </p>
               </div>
             </div>
@@ -59,7 +52,7 @@ export function AboutStory() {
       </section>
 
       {/* Mission / Vision */}
-      <section className="bg-[#f5f4f2]">
+      <section className="bg-muted">
         <div className="mx-auto max-w-[1280px] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
           <div className="grid gap-5 md:grid-cols-2 lg:gap-6">
             <AboutValueCard icon={Building2} title="Our Mission">
@@ -92,20 +85,20 @@ function AboutValueCard({
   children: React.ReactNode;
 }) {
   return (
-    <Card className="rounded-none border-0 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+    <Card className="rounded-none border-0 bg-card shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
       <CardContent className="p-7 sm:p-8 lg:p-9">
         {/* Icon */}
-        <div className="flex h-10 w-10 items-center justify-center bg-[#e8edf0]">
-          <Icon className="h-5 w-5 text-[#164b66]" strokeWidth={1.5} />
+        <div className="flex h-10 w-10 items-center justify-center bg-muted">
+          <Icon className="h-5 w-5 text-foreground" strokeWidth={1.5} />
         </div>
 
         {/* Title */}
-        <h3 className="mt-5 text-[17px] font-semibold text-[#164b66]">
+        <h3 className="mt-5 text-[17px] font-semibold text-foreground">
           {title}
         </h3>
 
         {/* Description */}
-        <p className="mt-3 max-w-[520px] text-[11px] leading-[1.7] text-[#555] sm:text-[12px]">
+        <p className="mt-3 max-w-[520px] text-sm leading-[1.7] text-muted-foreground sm:text-[12px]">
           {children}
         </p>
       </CardContent>

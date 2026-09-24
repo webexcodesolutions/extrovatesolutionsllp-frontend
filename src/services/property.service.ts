@@ -3,7 +3,8 @@
 import { PropertyRepository } from "@/repositories/property.repository";
 import type { PropertyFilters } from "@/repositories/property.repository";
 
-type CreatePropertyData = Record<string, unknown>;
+import type { PropertyInput } from "@/lib/property-schema";
+type CreatePropertyData = PropertyInput;
 
 export class PropertyService {
   private repository = new PropertyRepository();
@@ -12,7 +13,7 @@ export class PropertyService {
     return this.repository.findAll(filters, page, limit);
   }
   async getPropertiesById(id: string) {
-    return this.repository.findById(id);
+    return this.repository.findBySlug(id);
   }
 
   async createProperty(data: CreatePropertyData) {

@@ -1,16 +1,9 @@
 import Link from "next/link";
+import { site } from "@/lib/site";
 
 export function AboutCta() {
   return (
     <section className="relative overflow-hidden bg-[#164b66]">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/images/about-cta-bg.jpg')",
-        }}
-      />
-
       {/* Overlay */}
       <div className="absolute inset-0 bg-[#073b55]/85" />
 
@@ -20,27 +13,27 @@ export function AboutCta() {
           Ready to Define Your Legacy?
         </h2>
 
-        <p className="mt-4 max-w-[460px] text-[11px] leading-[1.55] text-white/85 sm:text-[12px]">
-          Connect with our senior consultants today for a private
+        <p className="mt-4 max-w-[460px] text-sm leading-[1.55] text-white/85 sm:text-[12px]">
+          Connect with our team to discuss your requirements and
           <br className="hidden sm:block" />
-          viewing of our exclusive off-market portfolio.
+          explore available properties.
         </p>
 
         {/* Actions */}
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
           <Link
-            href="/contact"
-            className="flex h-10 min-w-[185px] items-center justify-center bg-[#c5a021] px-6 text-[10px] font-semibold uppercase tracking-[1px] text-white transition-colors hover:bg-[#ad8b16]"
+            href="/contact-us"
+            className="flex min-h-11 min-w-[185px] items-center justify-center bg-secondary px-6 text-xs font-semibold uppercase tracking-[1px] text-white transition-colors hover:bg-[#ad8b16]"
           >
             Consult Your Expert
           </Link>
 
-          <Link
-            href="/brochure"
-            className="flex h-10 min-w-[185px] items-center justify-center border border-white/70 bg-transparent px-6 text-[10px] font-semibold uppercase tracking-[1px] text-white transition-colors hover:bg-white hover:text-[#164b66]"
+          {site.brochureUrl && <a
+            href={site.brochureUrl}
+            className="flex min-h-11 min-w-[185px] items-center justify-center border border-white/70 bg-transparent px-6 text-xs font-semibold uppercase tracking-[1px] text-white transition-colors hover:bg-card hover:text-foreground"
           >
             Download Brochure
-          </Link>
+          </a>}
         </div>
       </div>
     </section>

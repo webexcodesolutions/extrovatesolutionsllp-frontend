@@ -1,137 +1,16 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-
-const navItems = [
-  {
-    name: "HOME",
-    href: "/",
-  },
-  {
-    name: "ABOUT US",
-    href: "/about-us",
-  },
-  {
-    name: "PROJECTS",
-    href: "/projects",
-  },
-  {
-    name: "CONTACT",
-    href: "/contact-us",
-  },
-];
-
+const items = [["Home", "/"], ["About us", "/about-us"], ["Projects", "/projects"], ["Contact", "/contact-us"]];
+const subscribe = () => () => {};
 export default function Header() {
-  const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
-  const { setTheme, theme } = useTheme();
-
-  return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md shadow-sm">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
-        {/* Logo */}
-        <Link href="/">
-          <Image
-            src="/logo.svg"
-            alt="Extrovate Solutions LLP"
-            width={200}
-            height={100}
-            priority
-            className="h-auto w-36 md:w-44"
-          />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-10 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`
-            relative pb-1 font-montserrat font-medium transition-all duration-300
-            after:absolute after:bottom-0 after:left-0
-            after:h-0.5 after:bg-primary
-            after:transition-all after:duration-300
-            ${
-              pathname === item.href
-                ? "after:w-full"
-                : "text-foreground/80 after:w-0 hover:text-primary hover:after:w-full"
-            }
-          `}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Desktop Actions */}
-        <div className="hidden items-center gap-4 md:flex">
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-md border border-border bg-card p-2 text-foreground transition hover:bg-muted"
-          >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-
-          <button className="rounded-md bg-primary px-5 py-3 font-montserrat font-semibold text-primary-foreground transition hover:opacity-90">
-            Enquire Now
-          </button>
-        </div>
-
-        {/* Mobile Actions */}
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="rounded-md border border-border p-2"
-          >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-
-          <button
-            aria-label="Toggle Menu"
-            onClick={() => setIsOpen(!isOpen)}
-            className="rounded-md border border-border p-2"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      <div
-        className={`overflow-hidden transition-all duration-300 md:hidden ${
-          isOpen ? "max-h-[500px]" : "max-h-0"
-        }`}
-      >
-        <nav className="border-t border-border bg-card">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className={`block px-6 py-4 font-montserrat font-medium transition ${
-                pathname === item.href
-                  ? "border-l-4 border-primary bg-muted text-primary"
-                  : "text-foreground hover:bg-muted"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-
-          <div className="p-4">
-            <button className="w-full rounded-md bg-primary py-3 font-montserrat font-semibold text-primary-foreground transition hover:opacity-90">
-              Enquire Now
-            </button>
-          </div>
-        </nav>
-      </div>
-    </header>
-  );
+  const pathname = usePathname(); const [open, setOpen] = useState(false); const { setTheme, resolvedTheme } = useTheme();
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false); const dark = mounted && resolvedTheme === "dark";
+  const active = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const navigation = items.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)} aria-current={active(href) ? "page" : undefined} className={`flex min-h-11 items-center px-3 ${active(href) ? "font-semibold underline underline-offset-8" : "text-muted-foreground"}`}>{label}</Link>);
+  return <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur"><div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3"><Link href="/" aria-label="Extrovate Solutions LLP home"><Image src="/logo.svg" alt="Extrovate Solutions LLP" width={200} height={39} priority className="h-auto w-36 rounded bg-white p-1 md:w-44" /></Link><nav aria-label="Main" className="hidden gap-3 md:flex">{navigation}</nav><div className="flex items-center gap-2"><button type="button" disabled={!mounted} aria-label={`Switch to ${dark ? "light" : "dark"} theme`} onClick={() => setTheme(dark ? "light" : "dark")} className="flex size-11 items-center justify-center rounded-md border">{dark ? <Sun size={20} /> : <Moon size={20} />}</button><Link className="hidden min-h-11 items-center rounded-md bg-primary px-4 text-primary-foreground lg:flex" href="/contact-us">Enquire now</Link><button type="button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)} className="flex size-11 items-center justify-center rounded-md border md:hidden">{open ? <X /> : <Menu />}</button></div></div><nav id="mobile-navigation" aria-label="Mobile" hidden={!open} className="border-t bg-background p-4 md:hidden">{navigation}<Link className="mt-4 flex min-h-11 items-center justify-center rounded-md bg-primary text-primary-foreground" href="/contact-us" onClick={() => setOpen(false)}>Enquire now</Link></nav></header>;
 }
