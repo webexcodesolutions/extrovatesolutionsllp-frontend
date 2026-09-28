@@ -33,14 +33,10 @@ export async function sendInquiryAdminEmail(inquiry: InquiryEmailData) {
 
   await transporter.sendMail({
     from,
-
     to: adminEmail,
-
     // Clicking Reply sends the response to the customer
     replyTo: inquiry.email,
-
     subject: `New inquiry from ${inquiry.name}`,
-
     text: `
 A new inquiry has been received.
 

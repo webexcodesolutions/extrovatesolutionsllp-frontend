@@ -4,8 +4,7 @@ import Outbox from "@/models/outbox";
 import Inquiry from "@/models/inquiry";
 
 async function processInquiryCreated(event: any) {
-  const inquiryId = event.payload?.inquiryId;
-
+  const inquiryId = event.recordId;
   if (!inquiryId) {
     throw new Error("Outbox event does not contain inquiryId");
   }
@@ -57,18 +56,18 @@ export async function processOutbox() {
     }
 
     try {
-      switch (event.type) {
+      switch (event.kind) {
         case "inquiry.created":
           await processInquiryCreated(event);
           break;
 
         default:
-          throw new Error(`Unsupported outbox event type: ${event.type}`);
+          throw new Error(`Unsupported outbox event kind: ${event.kind}`);
       }
 
       // Email successfully sent
-      event.status = "processed";
-      event.processedAt = new Date();
+      event.status = "delivered";
+      event.updatedAt = new Date();
 
       await event.save();
 
