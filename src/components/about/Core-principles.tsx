@@ -72,14 +72,14 @@ function PrincipleCard({
 }: PrincipleCardProps) {
   if (featured) {
     return (
-      <Card className="group relative overflow-hidden rounded-none border-0 bg-[#164b66] shadow-none lg:col-span-6 lg:row-span-1">
+      <Card className="group relative overflow-hidden rounded-none border-0 bg-primary shadow-none lg:col-span-6 lg:row-span-1">
         <CardContent className="flex h-full flex-col justify-between p-6 sm:p-7">
-          <Icon className="h-7 w-7 text-[#f2cc4c]" strokeWidth={1.6} />
+          <Icon className="h-7 w-7 text-[#e5c568]" strokeWidth={1.6} />
 
           <div>
             <h3 className="text-[16px] font-semibold text-white">{title}</h3>
 
-            <p className="mt-1.5 max-w-[450px] text-xs leading-[1.5] text-[#a9cce5] sm:text-sm">
+            <p className="mt-1.5 max-w-[450px] text-xs leading-[1.5] text-white/80 sm:text-sm">
               {description}
             </p>
           </div>
@@ -90,7 +90,7 @@ function PrincipleCard({
 
   if (innovation) {
     return (
-      <Card className="rounded-none border border-[#e5c45b] bg-muted shadow-none lg:col-span-6 lg:row-start-2">
+      <Card className="rounded-none border border-secondary/40 bg-muted shadow-none lg:col-span-6 lg:row-start-2">
         <CardContent className="flex h-full items-center gap-6 p-6 sm:px-7">
           <Icon className="h-9 w-9 shrink-0 text-foreground" strokeWidth={1.6} />
 

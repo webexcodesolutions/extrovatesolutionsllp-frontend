@@ -8,5 +8,4 @@ export const inquirySchema = z.object({
   propertySlug: z.string().max(120).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).optional(),
   website: z.string().max(200).optional(),
 });
-export const subscriptionSchema = z.object({ email: emailSchema, consent: z.literal(true), website: z.string().max(200).optional() });
-export const POLICY_VERSION = "2026-09-24";
+export const POLICY_VERSION = "2026-09-29";

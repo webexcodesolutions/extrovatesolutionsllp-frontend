@@ -3,7 +3,7 @@ import Link from "next/link";
 import CuratedPortfolioIntro from "@/components/projects/CuratedPortfolioIntro";
 import ProjectsListing from "@/components/projects/ProjectsListing";
 import PropertyFilters from "@/components/projects/PropertyFilters";
-import { propertyQuerySchema } from "@/lib/property-schema";
+import { parsePropertySearch } from "@/lib/property-search";
 import { PropertyRepository } from "@/repositories/property.repository";
 import { connectDB } from "@/db/mongodb";
 export const dynamic = "force-dynamic";
@@ -23,7 +23,7 @@ export default async function ProjectsPage({
         typeof entry[1] === "string" && entry[1] !== "",
     ),
   );
-  const parsed = propertyQuerySchema.safeParse(query);
+  const parsed = parsePropertySearch(query);
   if (!parsed.success)
     return (
       <>
@@ -46,7 +46,7 @@ export default async function ProjectsPage({
   return (
     <>
       <CuratedPortfolioIntro />
-      <PropertyFilters filters={filters} />
+      <PropertyFilters filters={filters} budget={query.budget} />
       {data ? (
         <ProjectsListing data={data} query={query} />
       ) : (

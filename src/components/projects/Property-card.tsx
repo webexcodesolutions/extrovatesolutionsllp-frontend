@@ -50,10 +50,10 @@ export type PropertyCardProps = {
 };
 
 const tagStyles = {
-  gold: "bg-[#e9c94a] text-[#403500]",
-  blue: "bg-[#25556d] text-white",
-  red: "bg-[#e94b45] text-white",
-  green: "bg-[#8d9d35] text-white",
+  gold: "bg-secondary text-secondary-foreground",
+  blue: "bg-primary text-primary-foreground",
+  red: "bg-[#aa5b48] text-white",
+  green: "bg-[#627840] text-white",
 };
 
 export function PropertyCard({
@@ -96,7 +96,7 @@ export function PropertyCard({
             {title}
           </h3>
 
-          <span className="shrink-0 text-[12px] font-bold text-[#806500]">
+          <span className="shrink-0 text-[12px] font-bold text-secondary">
             {price}
           </span>
         </div>
@@ -134,7 +134,7 @@ export function PropertyCard({
         {/* CTA */}
         <Link
           href={`/projects/${slug}`}
-          className="mt-4 flex min-h-11 w-full items-center justify-center rounded-md border border-[#16445f] bg-card text-xs font-semibold tracking-[0.8px] text-foreground transition-colors hover:bg-[#16445f] hover:text-white"
+          className="mt-4 flex min-h-11 w-full items-center justify-center rounded-md border border-primary bg-card text-xs font-semibold tracking-[0.8px] text-foreground transition-colors hover:bg-primary hover:text-white"
         >
           {actionLabel}
           <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />

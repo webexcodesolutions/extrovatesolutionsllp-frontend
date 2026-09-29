@@ -55,5 +55,5 @@ propertySchema.index({ displayOrder: 1, createdAt: -1, _id: 1 });
 type PropertyDocument = InferSchemaType<typeof propertySchema>;
 const Property =
   (models.Property as Model<PropertyDocument> | undefined) ??
-  model("Property", propertySchema);
+  model<PropertyDocument>("Property", propertySchema);
 export default Property;

@@ -6,6 +6,7 @@ import { apiError, HttpError, readJson } from "@/lib/api";
 import { protectForm } from "@/lib/rate-limit";
 import { PropertyRepository } from "@/repositories/property.repository";
 import { processOutbox } from "@/lib/process-outbox";
+
 export async function POST(request: Request) {
   try {
     const { website, ...data } = inquirySchema.parse(

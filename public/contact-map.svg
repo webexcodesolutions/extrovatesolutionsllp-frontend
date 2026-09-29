@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="400" viewBox="0 0 1440 400" role="img" aria-label="Decorative street grid">
+  <defs>
+    <pattern id="blocks" width="205" height="152" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)">
+      <rect width="205" height="152" fill="#e9ebe9"/>
+      <path d="M0 0H205M0 76H205M0 152H205M0 0V152M102 0V152M205 0V152" stroke="#fff" stroke-width="16"/>
+      <path d="M22 19h54v37H22zM124 18h58v39h-58zM19 94h62v39H19zM124 96h60v36h-60z" fill="#d9deda"/>
+      <path d="M28 25h42v26H28zM130 24h47v27h-47zM25 101h50v25H25zM130 102h47v24h-47z" fill="#e4e7e3"/>
+    </pattern>
+  </defs>
+  <rect width="1440" height="400" fill="url(#blocks)"/>
+  <path d="M-70 360 482 -45M610 445 1160 -60M1100 440 1560 110" fill="none" stroke="#d3d9d5" stroke-width="42"/>
+  <path d="M-70 360 482 -45M610 445 1160 -60M1100 440 1560 110" fill="none" stroke="#f7f8f6" stroke-width="29"/>
+  <path d="M-50 113 1490 315M-40 270 1500 70" fill="none" stroke="#cdd4d0" stroke-width="30"/>
+  <path d="M-50 113 1490 315M-40 270 1500 70" fill="none" stroke="#f9faf8" stroke-width="19"/>
+  <g fill="#d1d9d3" opacity=".8">
+    <circle cx="175" cy="246" r="7"/><circle cx="295" cy="310" r="6"/><circle cx="475" cy="159" r="7"/>
+    <circle cx="690" cy="73" r="7"/><circle cx="900" cy="285" r="7"/><circle cx="1210" cy="172" r="7"/>
+    <circle cx="1315" cy="340" r="6"/>
+  </g>
+  <rect width="1440" height="400" fill="#fff" opacity=".13"/>
+</svg>

@@ -1,19 +1,3 @@
 export default function CuratedPortfolioIntro() {
-  return (
-    <section className="w-full bg-background">
-      <div className="mx-auto max-w-[1280px] px-5 py-5 sm:px-6 lg:px-8">
-        <h1 className="font-sans text-[26px] font-semibold leading-[1.15] tracking-[-0.5px] text-foreground sm:text-[28px]">
-          Our Curated Portfolio
-        </h1>
-
-        <p className="mt-2 max-w-[620px] text-[13px] font-normal leading-[1.55] text-[#404040] sm:text-[14px]">
-          Discover architectural excellence across our residential and
-          commercial
-          <br className="hidden sm:block" />
-          landscapes. From ready-to-move luxury apartments to strategic new
-          launches.
-        </p>
-      </div>
-    </section>
-  );
+  return <section className="bg-primary px-6 py-16 text-white sm:py-20"><div className="mx-auto max-w-7xl"><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#e5c568]">Find your space</p><h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Our Curated Portfolio</h1><p className="mt-4 max-w-2xl text-sm leading-6 text-white/85">Explore current residential and commercial listings. Filter by location, property type and budget to find a suitable place to start.</p></div></section>;
 }

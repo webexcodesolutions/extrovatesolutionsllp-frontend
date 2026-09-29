@@ -6,4 +6,4 @@ const schema = new Schema({
   status: { type: String, enum: ["new", "contacted", "closed"], default: "new", index: true },
 }, { timestamps: true });
 schema.index({ createdAt: 1 }, { expireAfterSeconds: 365 * 86400 });
-export default (models.Inquiry as Model<InferSchemaType<typeof schema>> | undefined) ?? model("Inquiry", schema);
+export default (models.Inquiry as Model<InferSchemaType<typeof schema>> | undefined) ?? model<InferSchemaType<typeof schema>>("Inquiry", schema);

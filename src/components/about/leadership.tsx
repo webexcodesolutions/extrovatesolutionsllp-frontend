@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { leaders } from "@/lib/approved-content";
+type Leader = (typeof leaders)[number];
 
 export function Leadership() {
   if (!leaders.length) return null;

@@ -1,13 +1,18 @@
-import Link from "next/link";
+import { Building2, MapPin, Search, Wallet } from "lucide-react";
 import { PROPERTY_STATUSES, PROPERTY_TYPES } from "@/lib/property-schema";
+
+import { budgetOptions } from "@/lib/budgets";
+
 type Filters = { city?: string; propertyType?: string; status?: string; minPrice?: number; maxPrice?: number };
-export default function PropertyFilters({ filters }: { filters: Filters }) {
-  return <form action="/projects" method="get" className="mx-auto grid max-w-7xl gap-4 rounded-xl border bg-card p-6 sm:grid-cols-2 lg:grid-cols-3" aria-label="Filter properties">
-    <label className="grid gap-2 text-sm">Location<input name="city" defaultValue={filters.city} maxLength={100} placeholder="All locations" className="h-11 rounded-md border bg-background px-3" /></label>
-    <label className="grid gap-2 text-sm">Property type<select name="propertyType" defaultValue={filters.propertyType || ""} className="h-11 rounded-md border bg-background px-3"><option value="">All types</option>{PROPERTY_TYPES.map(value => <option key={value}>{value}</option>)}</select></label>
-    <label className="grid gap-2 text-sm">Status<select name="status" defaultValue={filters.status || ""} className="h-11 rounded-md border bg-background px-3"><option value="">All statuses</option>{PROPERTY_STATUSES.map(value => <option key={value}>{value}</option>)}</select></label>
-    <label className="grid gap-2 text-sm">Minimum budget (INR)<input name="minPrice" type="number" min="0" step="any" defaultValue={filters.minPrice} placeholder="Any minimum" className="h-11 rounded-md border bg-background px-3" /></label>
-    <label className="grid gap-2 text-sm">Maximum budget (INR)<input name="maxPrice" type="number" min="0" step="any" defaultValue={filters.maxPrice} placeholder="Any maximum" className="h-11 rounded-md border bg-background px-3" /></label>
-    <div className="flex items-end gap-5"><button className="h-11 rounded-md bg-primary px-6 text-primary-foreground" type="submit">Search properties</button><Link className="flex min-h-11 items-center underline" href="/projects">Reset</Link></div>
+
+export default function PropertyFilters({ filters, variant = "listing", budget = "" }: { filters: Filters; variant?: "hero" | "listing"; budget?: string }) {
+  const hero = variant === "hero";
+  const field = "mt-2 h-12 w-full rounded-sm border border-border bg-white px-3 text-sm text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
+  return <form action="/projects" method="get" role="search" aria-label="Search properties" className={hero ? "grid gap-4 bg-card px-5 py-6 shadow-[0_10px_30px_rgba(15,39,54,0.08)] sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] lg:items-end lg:gap-5 lg:px-8" : "grid gap-4 rounded-sm border border-border bg-card p-5 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_auto] lg:items-end lg:p-6"}>
+    <label className="block min-w-0 text-xs font-medium text-foreground"><span className="flex items-center gap-2"><MapPin size={14} aria-hidden="true" /> Location</span><input name="city" list="search-cities" defaultValue={filters.city || ""} maxLength={100} placeholder="Select city" className={field} autoComplete="address-level2" /><datalist id="search-cities"><option value="Mumbai" /><option value="Delhi" /><option value="Bengaluru" /><option value="Pune" /><option value="Dubai" /></datalist></label>
+    <label className="block min-w-0 text-xs font-medium text-foreground"><span className="flex items-center gap-2"><Building2 size={14} aria-hidden="true" /> Property type</span><select name="propertyType" defaultValue={filters.propertyType || ""} className={field}><option value="">All property types</option>{PROPERTY_TYPES.map(type => <option key={type} value={type}>{type}</option>)}</select></label>
+    <label className="block min-w-0 text-xs font-medium text-foreground"><span className="flex items-center gap-2"><Wallet size={14} aria-hidden="true" /> Budget range</span><select name="budget" defaultValue={budget} className={field}><option value="">Any budget</option>{budgetOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>
+    {!hero && <label className="block min-w-0 text-xs font-medium text-foreground"><span>Status</span><select name="status" defaultValue={filters.status || ""} className={field}><option value="">All statuses</option>{PROPERTY_STATUSES.map(status => <option key={status}>{status}</option>)}</select></label>}
+    <button className="flex h-12 min-w-44 items-center justify-center gap-2 rounded-sm bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-ring" type="submit"><Search size={17} aria-hidden="true" /> Search properties</button>
   </form>;
 }

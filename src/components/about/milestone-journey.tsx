@@ -16,7 +16,7 @@ export function MilestoneJourney() {
         {/* Timeline */}
         <div className="relative mx-auto mt-12 max-w-[1050px]">
           {/* Center Line */}
-          <div className="absolute bottom-0 left-1/2 top-0 hidden w-px -translate-x-1/2 bg-[#d8dde0] md:block" />
+          <div className="absolute bottom-0 left-1/2 top-0 hidden w-px -translate-x-1/2 bg-border md:block" />
 
           <div className="space-y-14 md:space-y-0">
             {milestones.map((milestone) => (
@@ -49,10 +49,10 @@ function Milestone({
   return (
     <div className="relative md:min-h-[175px]">
       {/* Timeline dot */}
-      <div className="absolute left-1/2 top-1/2 z-20 hidden h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#c29c1e] md:block" />
+      <div className="absolute left-1/2 top-1/2 z-20 hidden h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-secondary md:block" />
 
       {/* Mobile timeline */}
-      <div className="absolute bottom-0 left-3 top-0 w-px bg-[#d8dde0] md:hidden" />
+      <div className="absolute bottom-0 left-3 top-0 w-px bg-border md:hidden" />
 
       <div
         className={`grid md:grid-cols-2 ${
@@ -68,10 +68,10 @@ function Milestone({
           }`}
         >
           {/* Mobile dot */}
-          <span className="absolute left-[9px] top-1/2 z-10 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-[#c29c1e] md:hidden" />
+          <span className="absolute left-[9px] top-1/2 z-10 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-secondary md:hidden" />
 
           <div className="max-w-[360px]">
-            <div className="text-[42px] font-bold leading-none tracking-[-1.5px] text-[#e8edf0] sm:text-[48px]">
+            <div className="text-[42px] font-bold leading-none tracking-[-1.5px] text-primary/15 sm:text-[48px]">
               {year}
             </div>
 

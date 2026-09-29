@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme/theme-provider";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 
@@ -37,21 +36,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
       className={`${inter.variable} ${montserrat.variable}  h-full `}
     >
       <body className="min-h-full flex flex-col font-inter antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
           <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-background focus:p-4">Skip to content</a>
           <Header />
           <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
           <Footer />
-        </ThemeProvider>
       </body>
     </html>
   );

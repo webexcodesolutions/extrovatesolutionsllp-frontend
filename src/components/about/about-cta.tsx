@@ -3,9 +3,9 @@ import { site } from "@/lib/site";
 
 export function AboutCta() {
   return (
-    <section className="relative overflow-hidden bg-[#164b66]">
+    <section className="relative overflow-hidden bg-primary">
       {/* Overlay */}
-      <div className="absolute inset-0 bg-[#073b55]/85" />
+      <div className="absolute inset-0 bg-primary/85" />
 
       {/* Content */}
       <div className="relative mx-auto flex min-h-[240px] max-w-[1280px] flex-col items-center justify-center px-5 py-12 text-center sm:min-h-[270px] sm:px-8 lg:px-10">
@@ -23,7 +23,7 @@ export function AboutCta() {
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
           <Link
             href="/contact-us"
-            className="flex min-h-11 min-w-[185px] items-center justify-center bg-secondary px-6 text-xs font-semibold uppercase tracking-[1px] text-white transition-colors hover:bg-[#ad8b16]"
+            className="flex min-h-11 min-w-[185px] items-center justify-center bg-secondary px-6 text-xs font-semibold uppercase tracking-[1px] text-white transition-colors hover:bg-[#b99421]"
           >
             Consult Your Expert
           </Link>

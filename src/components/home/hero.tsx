@@ -1,63 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight, Play } from "lucide-react";
 import PropertyFilters from "@/components/projects/PropertyFilters";
 import { site } from "@/lib/site";
+
 export default function Hero() {
-  return (
-    <section className="relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <Image
-          src="/hero.svg"
-          alt="Hero Background"
-          fill
-          priority
-          className="object-cover"
-        />
-
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-primary/75" />
-      </div>
-
-      {/* Hero Content */}
-      <div className="relative z-10">
-        <div className="mx-auto flex min-h-[75vh] max-w-7xl items-center px-6 py-24 lg:min-h-[85vh]">
-          <div className="max-w-3xl">
-            {/* Subtitle */}
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[4px] text-secondary">
-              PREMIER REAL ESTATE INVESTMENTS
-            </p>
-
-            {/* Heading */}
-            <h1 className="font-montserrat text-5xl font-bold leading-tight text-primary-foreground md:text-6xl lg:text-7xl">
-              Redefining the
-              <br />
-              <span className="text-secondary">Architecture</span> of
-              <br />
-              Investment
-            </h1>
-
-            {/* Description */}
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-primary-foreground/80">
-              Experience a paradigm shift in property acquisition. We blend
-              structural precision with financial mastery to secure your legacy.
-            </p>
-
-            {/* Buttons */}
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Link href="/projects" className="rounded-md bg-secondary px-8 py-4 font-montserrat font-semibold text-secondary-foreground transition-all duration-300 hover:-translate-y-1 hover:opacity-90">
-                Explore Portfolio →
-              </Link>
-
-              {site.filmUrl && <a href={site.filmUrl} className="rounded-md border border-primary-foreground/30 bg-background/10 px-8 py-4 font-montserrat font-semibold text-primary-foreground backdrop-blur-md transition-all duration-300 hover:bg-background/20">
-                Watch Film
-              </a>}
-            </div>
+  return <>
+    <section className="relative isolate overflow-hidden bg-primary text-white">
+      <Image src="/hero.svg" alt="" fill priority sizes="100vw" className="-z-20 object-cover object-center" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,31,47,.42)_0%,rgba(8,31,47,.23)_52%,rgba(8,31,47,.10)_100%)]" />
+      <div className="mx-auto flex min-h-[570px] max-w-7xl items-center px-6 py-24 sm:min-h-[630px] lg:min-h-[680px]">
+        <div className="max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#e5c568]">Premier real estate investments</p>
+          <h1 className="mt-5 font-heading text-[clamp(2.8rem,6vw,5.25rem)] font-bold leading-[1.02] tracking-[-0.045em] text-white">Redefining the<br /><span className="text-[#dbb83e]">Architecture</span> of<br />Investment</h1>
+          <p className="mt-6 max-w-xl text-base leading-7 text-white/90 sm:text-lg">Explore carefully selected properties and find a space that fits your plans.</p>
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <Link href="/projects" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-[#ba9b30] px-7 text-sm font-semibold text-[#152e3f] transition-colors hover:bg-[#d2b24b]">Explore portfolio <ArrowUpRight size={17} /></Link>
+            {site.filmUrl && <a href={site.filmUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-white/60 bg-black/20 px-7 text-sm font-medium text-white hover:bg-white/10"><Play size={15} /> Watch film</a>}
           </div>
         </div>
-
-        <div className="relative z-20 mx-auto -mt-12 max-w-7xl px-6 pb-12"><PropertyFilters filters={{}} /></div>
       </div>
     </section>
-  );
+    <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:-mt-1"><PropertyFilters filters={{}} variant="hero" /></div>
+  </>;
 }

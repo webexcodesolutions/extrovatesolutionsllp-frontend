@@ -11,7 +11,7 @@ export function AboutStory() {
         <div className="mx-auto max-w-[1280px] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-12 xl:gap-16">
             {/* Image */}
-            <div className="relative border border-[#d9d9d9] p-2">
+            <div className="relative border border-border p-2">
               <div className="relative aspect-[1.35/1] overflow-hidden">
                 <Image
                   src="/assets/images/modern-building.svg"
