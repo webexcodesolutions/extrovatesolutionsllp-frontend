@@ -7,12 +7,11 @@ import ExpertiseSection from "@/components/home/our-expertise";
 import TestimonialsSection from "@/components/home/testimonialsSection";
 import CTASection from "@/components/home/CTASection";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
-    // <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-
-    // </div>
-    <main>
+    <>
       <Hero />
       <AboutSection />
       <Projects />
@@ -21,6 +20,6 @@ export default function Home() {
       <ExpertiseSection />
       <TestimonialsSection />
       <CTASection />
-    </main>
+    </>
   );
 }

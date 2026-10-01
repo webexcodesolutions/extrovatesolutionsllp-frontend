@@ -1,122 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Target, Eye, Wallet, ArrowRight } from "lucide-react";
+import { ArrowUpRight, Eye, Target, Wallet } from "lucide-react";
 
 export default function ValuesSection() {
-  return (
-    <section className="bg-background py-20 md:py-24">
-      <div className="mx-auto max-w-7xl border-x border-border">
-        {/* Main Section */}
-        <div className="grid gap-12 px-6 py-16 lg:grid-cols-2">
-          {/* Left */}
-          <div className="flex flex-col justify-center">
-            <p className="text-sm font-semibold uppercase tracking-[4px] text-secondary">
-              OUR VALUES
-            </p>
-
-            <h2 className="font-montserrat mt-4 text-4xl font-bold leading-tight text-foreground md:text-5xl">
-              Excellence Through Values
-            </h2>
-
-            <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-              Our values shape every decision we make and every service we
-              provide. We are committed to integrity, quality, innovation, and
-              customer satisfaction, building lasting relationships based on
-              trust and excellence.
-            </p>
-
-            {/* Mission & Vision */}
-            <div className="mt-10 space-y-6">
-              {/* Mission */}
-              <div className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                <div className="flex gap-5">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border bg-background">
-                    <Target size={24} className="text-secondary" />
-                  </div>
-
-                  <div>
-                    <h3 className="font-montserrat text-2xl font-semibold text-foreground">
-                      Our Mission
-                    </h3>
-
-                    <p className="mt-2 leading-7 text-muted-foreground">
-                      To deliver exceptional solutions that empower customers,
-                      inspire growth, and create lasting positive impact every
-                      day.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Vision */}
-              <div className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                <div className="flex gap-5">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-border bg-background">
-                    <Eye size={24} className="text-secondary" />
-                  </div>
-
-                  <div>
-                    <h3 className="font-montserrat text-2xl font-semibold text-foreground">
-                      Our Vision
-                    </h3>
-
-                    <p className="mt-2 leading-7 text-muted-foreground">
-                      To become a trusted leader by driving innovation,
-                      delivering excellence, and creating a better future for
-                      everyone.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Image */}
-          <div className="flex items-center justify-center">
-            <div className="overflow-hidden rounded-2xl border border-border bg-card p-3 shadow-lg">
-              <div className="relative h-[350px] w-full overflow-hidden rounded-xl sm:h-[450px] lg:h-[600px] lg:w-[500px]">
-                <Image
-                  src="/assets/images/iso-certified.svg"
-                  alt="Luxury Villa"
-                  fill
-                  priority
-                  className="object-cover transition-transform duration-700 hover:scale-105"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Banner */}
-        <div className="border-t border-border bg-card px-6 py-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex items-start gap-5">
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary">
-                <Wallet size={28} className="text-primary-foreground" />
-              </div>
-
-              <div>
-                <h3 className="font-montserrat text-xl font-semibold text-foreground">
-                  Exclusive Financial Solutions
-                </h3>
-
-                <p className="mt-2 max-w-2xl leading-7 text-muted-foreground">
-                  Access bespoke mortgage rates and tailored loan assistance
-                  through our elite banking partners.
-                </p>
-              </div>
-            </div>
-
-            <Link
-              href="/loan-assistance"
-              className="flex items-center gap-2 font-montserrat font-semibold tracking-wide text-secondary transition-all duration-300 hover:gap-4"
-            >
-              LEARN ABOUT LOANS
-              <ArrowRight size={18} />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <section className="bg-muted"><div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
+    <div><p className="eyebrow">Our values</p><h2 className="mt-3 text-3xl font-semibold tracking-tight text-primary sm:text-4xl">Excellence Through Values</h2><p className="mt-4 max-w-xl text-base leading-7 text-muted-foreground">The way we work starts with your requirements. We aim to make each property search clear, thoughtful and useful.</p>
+      <div className="mt-7 space-y-3">{[{ title: "Our mission", text: "Help people find spaces that suit their plans, with clear information at every step.", icon: Target }, { title: "Our vision", text: "Make property discovery easier through considered selection and practical guidance.", icon: Eye }].map(({ title, text, icon: Icon }) => <div key={title} className="flex gap-4 rounded-xl border border-border bg-card p-5 shadow-lg shadow-primary/5"><span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-border text-secondary-ink"><Icon size={20} aria-hidden="true" /></span><div><h3 className="text-lg font-semibold text-primary">{title}</h3><p className="mt-1 text-sm leading-6 text-muted-foreground">{text}</p></div></div>)}</div>
+    </div>
+    <div className="border border-border bg-card p-2.5"><div className="relative aspect-[1/1.05] overflow-hidden"><Image src="/assets/images/amber-residences.svg" alt="Contemporary home at dusk" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div></div>
+  </div><div className="border-t border-border bg-background"><div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-6 sm:flex-row sm:items-center sm:justify-between"><div className="flex items-center gap-4"><span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary text-white"><Wallet size={22} aria-hidden="true" /></span><div><h3 className="text-base font-semibold text-primary">Financing conversations</h3><p className="text-sm text-muted-foreground">Discuss your requirements and the documents you may need.</p></div></div><Link href="/loan-assistance" className="inline-flex min-h-11 items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent-foreground hover:underline">Learn about loans <ArrowUpRight size={16} /></Link></div></div></section>;
 }

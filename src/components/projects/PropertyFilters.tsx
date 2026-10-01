@@ -1,103 +1,18 @@
-"use client";
+import { Building2, MapPin, Search, Wallet } from "lucide-react";
+import { PROPERTY_STATUSES, PROPERTY_TYPES } from "@/lib/property-schema";
 
-import { Building2, ChevronDown, MapPin, Search } from "lucide-react";
+import { budgetOptions } from "@/lib/budgets";
 
-const filters = [
-  {
-    label: "Location",
-    value: "All Locations",
-    icon: MapPin,
-  },
-  {
-    label: "Property Type",
-    value: "All Types",
-    icon: Building2,
-  },
-  {
-    label: "Budget Range",
-    value: "Any Budget",
-    icon: null,
-  },
-  {
-    label: "Status",
-    value: "All Status",
-    icon: null,
-  },
-];
+type Filters = { city?: string; propertyType?: string; status?: string; minPrice?: number; maxPrice?: number };
 
-export default function PropertyFilters() {
-  return (
-    <section className="w-full bg-[#faf9f8] px-1 py-1.5 sm:px-2">
-      <div className="mx-auto w-full max-w-[1280px] rounded-[8px] border border-[#e7e7e7] bg-white px-4 py-3 shadow-[0_1px_3px_rgba(0,0,0,0.04)] sm:px-4">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:gap-4">
-          {/* Location */}
-          <FilterField
-            label="Location"
-            value="All Locations"
-            icon={<MapPin className="h-3.5 w-3.5 text-[#626b73]" />}
-            className="lg:flex-[1.1]"
-          />
-
-          {/* Property Type */}
-          <FilterField
-            label="Property Type"
-            value="All Types"
-            icon={<Building2 className="h-3.5 w-3.5 text-[#626b73]" />}
-            className="lg:flex-[1.1]"
-          />
-
-          {/* Budget */}
-          <FilterField
-            label="Budget Range"
-            value="Any Budget"
-            className="lg:flex-[1.1]"
-          />
-
-          {/* Status */}
-          <FilterField
-            label="Status"
-            value="All Status"
-            className="lg:flex-[0.75]"
-          />
-
-          {/* Filter Button */}
-          <button
-            type="button"
-            className="flex h-[28px] shrink-0 items-center justify-center gap-1.5 rounded-[5px] bg-[#806500] px-4 text-[9px] font-semibold uppercase tracking-[0.3px] text-white transition-colors hover:bg-[#6d5700] focus:outline-none focus:ring-2 focus:ring-[#806500]/30 focus:ring-offset-1 lg:w-[78px]"
-          >
-            <Search className="h-3 w-3" strokeWidth={2.5} />
-            Filter
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-type FilterFieldProps = {
-  label: string;
-  value: string;
-  icon?: React.ReactNode;
-  className?: string;
-};
-
-function FilterField({ label, value, icon, className = "" }: FilterFieldProps) {
-  return (
-    <div className={`min-w-0 ${className}`}>
-      <label className="mb-1 block text-[9px] font-medium leading-none tracking-[0.2px] text-[#333840]">
-        {label}
-      </label>
-
-      <button
-        type="button"
-        className="flex h-[28px] w-full items-center rounded-[5px] border border-[#d5d9dd] bg-white px-2 text-left text-[10px] text-[#444a50] transition-colors hover:border-[#b9bec4] focus:border-[#806500] focus:outline-none focus:ring-1 focus:ring-[#806500]/20"
-      >
-        {icon && <span className="mr-1.5 shrink-0">{icon}</span>}
-
-        <span className="min-w-0 flex-1 truncate">{value}</span>
-
-        <ChevronDown className="ml-2 h-3 w-3 shrink-0 text-[#66717b]" />
-      </button>
-    </div>
-  );
+export default function PropertyFilters({ filters, variant = "listing", budget = "" }: { filters: Filters; variant?: "hero" | "listing"; budget?: string }) {
+  const hero = variant === "hero";
+  const field = "mt-2 h-12 w-full rounded-sm border border-border bg-white px-3 text-sm text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
+  return <form action="/projects" method="get" role="search" aria-label="Search properties" className={hero ? "grid gap-4 bg-card px-5 py-6 shadow-lg shadow-primary/10 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_auto] lg:items-end lg:gap-5 lg:px-8" : "grid gap-4 rounded-sm border border-border bg-card p-5 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_auto] lg:items-end lg:p-6"}>
+    <label className="block min-w-0 text-xs font-medium text-foreground"><span className="flex items-center gap-2"><MapPin size={14} aria-hidden="true" /> Location</span><input name="city" list="search-cities" defaultValue={filters.city || ""} maxLength={100} placeholder="Select city" className={field} autoComplete="address-level2" /><datalist id="search-cities"><option value="Mumbai" /><option value="Delhi" /><option value="Bengaluru" /><option value="Pune" /><option value="Dubai" /></datalist></label>
+    <label className="block min-w-0 text-xs font-medium text-foreground"><span className="flex items-center gap-2"><Building2 size={14} aria-hidden="true" /> Property type</span><select name="propertyType" defaultValue={filters.propertyType || ""} className={field}><option value="">All property types</option>{PROPERTY_TYPES.map(type => <option key={type} value={type}>{type}</option>)}</select></label>
+    <label className="block min-w-0 text-xs font-medium text-foreground"><span className="flex items-center gap-2"><Wallet size={14} aria-hidden="true" /> Budget range</span><select name="budget" defaultValue={budget} className={field}><option value="">Any budget</option>{budgetOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>
+    {!hero && <label className="block min-w-0 text-xs font-medium text-foreground"><span>Status</span><select name="status" defaultValue={filters.status || ""} className={field}><option value="">All statuses</option>{PROPERTY_STATUSES.map(status => <option key={status}>{status}</option>)}</select></label>}
+    <button className="flex h-12 min-w-44 items-center justify-center gap-2 rounded-sm bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-ring" type="submit"><Search size={17} aria-hidden="true" /> Search properties</button>
+  </form>;
 }

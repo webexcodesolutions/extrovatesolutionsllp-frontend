@@ -1,13 +1,19 @@
-// src/db/mongodb.ts
-
 import mongoose from "mongoose";
-
-const MONGODB_URI = process.env.MONGODB_URI!;
-
+const state = globalThis as typeof globalThis & {
+  mongooseConnection?: Promise<typeof mongoose>;
+};
 export async function connectDB() {
-  if (mongoose.connections[0].readyState) {
-    return;
+  const uri = process.env.MONGODB_URI;
+  if (!uri) throw new Error("Database is not configured");
+  if (mongoose.connection.readyState === 1) return mongoose;
+  if (!state.mongooseConnection) {
+    state.mongooseConnection = mongoose.connect(uri, {
+      serverSelectionTimeoutMS: 5000,
+    });
   }
-
-  await mongoose.connect(MONGODB_URI);
+  try {
+    return await state.mongooseConnection;
+  } finally {
+    state.mongooseConnection = undefined;
+  }
 }

@@ -1,113 +1,18 @@
 import Link from "next/link";
-import {
-  Building2,
-  Landmark,
-  TrendingUp,
-  Globe,
-  Handshake,
-  Megaphone,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowUpRight, Building2, Globe2, Handshake, Home, Landmark, TrendingUp } from "lucide-react";
 
 const expertise = [
-  {
-    title: "Residential Sales",
-    description: "Premium homes matching your lifestyle and legacy.",
-    icon: Building2,
-  },
-  {
-    title: "Commercial Leasing",
-    description: "Strategic spaces for business growth and retail.",
-    icon: Landmark,
-  },
-  {
-    title: "Investment Advisory",
-    description: "Data-backed insights to maximize your ROI.",
-    icon: TrendingUp,
-  },
-  {
-    title: "NRI Services",
-    description: "End-to-end support from search to documentation.",
-    icon: Globe,
-  },
-  {
-    title: "Tenant Representation",
-    description: "Negotiating best terms with cost-efficiency.",
-    icon: Handshake,
-  },
-  {
-    title: "Project Marketing",
-    description: "Exclusive mandates for top-tier developers.",
-    icon: Megaphone,
-  },
+  { title: "Residential sales", description: "Homes that match your space and location needs.", icon: Home },
+  { title: "Commercial leasing", description: "Spaces suited to the way your business works.", icon: Building2 },
+  { title: "Investment inquiries", description: "Information to help you assess opportunities.", icon: TrendingUp },
+  { title: "Remote buyers", description: "Explore properties and arrange a conversation from afar.", icon: Globe2 },
+  { title: "Property guidance", description: "Discuss options and plan the next steps.", icon: Handshake },
+  { title: "Project discovery", description: "Browse developments by type, status and budget.", icon: Landmark },
 ];
 
 export default function ExpertiseSection() {
-  return (
-    <section className="bg-background py-20 md:py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left Content */}
-          <div className="flex flex-col justify-center">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[4px] text-secondary">
-              OUR EXPERTISE
-            </p>
-
-            <h2 className="font-montserrat text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl">
-              Delivering Excellence
-              <br />
-              Through Experience
-            </h2>
-
-            <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-              Comprehensive Real Estate Solutions Tailored for You. We provide a
-              full spectrum of services from residential sales to commercial
-              leasing, ensuring every aspect of your real estate journey is
-              covered with professionalism, transparency, and integrity.
-            </p>
-
-            <Link
-              href="/contact-us"
-              className="mt-8 inline-flex w-fit items-center gap-2 rounded-md bg-primary px-6 py-4 font-montserrat font-semibold text-primary-foreground transition-all duration-300 hover:gap-3 hover:opacity-90"
-            >
-              Enquire Now
-              <ArrowRight size={18} />
-            </Link>
-          </div>
-
-          {/* Right Cards */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            {expertise.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.title}
-                  className="group rounded-2xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-secondary hover:shadow-xl"
-                >
-                  <div className="flex gap-4">
-                    {/* Icon */}
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-secondary/30 bg-secondary/10 transition-transform duration-300 group-hover:scale-110">
-                      <Icon size={22} className="text-secondary" />
-                    </div>
-
-                    {/* Content */}
-                    <div>
-                      <h3 className="font-montserrat text-lg font-semibold text-foreground">
-                        {item.title}
-                      </h3>
-
-                      <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <section className="bg-background py-20 sm:py-24"><div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-16">
+    <div><p className="eyebrow">Our expertise</p><h2 className="mt-4 text-3xl font-semibold leading-[1.15] tracking-tight text-primary sm:text-4xl">Delivering Excellence Through Experience</h2><p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">Explore residential and commercial properties, compare the details and connect with our team when you are ready.</p><Link href="/contact-us" className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-sm bg-primary px-6 text-sm font-semibold text-white hover:bg-primary/90">Enquire now <ArrowUpRight size={16} /></Link></div>
+    <div className="grid gap-3 sm:grid-cols-2">{expertise.map(({ title, description, icon: Icon }) => <div className="flex gap-3 rounded-lg border border-border bg-card p-5" key={title}><span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-secondary/40 text-secondary-ink"><Icon size={19} aria-hidden="true" /></span><div><h3 className="text-sm font-semibold text-primary">{title}</h3><p className="mt-1 text-sm leading-5 text-muted-foreground">{description}</p></div></div>)}</div>
+  </div></section>;
 }

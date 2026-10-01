@@ -1,10 +1,9 @@
 "use client";
 
+import { useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { Quote } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
-
 import {
   Carousel,
   CarouselContent,
@@ -12,166 +11,105 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { testimonials as approvedTestimonials } from "@/lib/approved-content";
+import { demoTestimonials } from "@/lib/demo-testimonials";
 
-const testimonials = [
-  {
-    id: 1,
-    name: "Julian Crawford",
-    role: "Tech Entrepreneur",
-    image: "/assets/images/julian-crawford.svg",
-    quote:
-      "Extrovate didn't just find me a house; they found me a masterpiece. Their attention to architectural detail and professional guidance during the closing process was unparalleled.",
-  },
-  {
-    id: 2,
-    name: "Helena Vance",
-    role: "Portfolio Manager",
-    image: "/assets/images/helena-vance.svg",
-    quote:
-      "The loan assistance program was a game-changer for our investment portfolio. The rates they secured were significantly better than what we found independently. Truly a full-service experience.",
-    featured: true,
-  },
-  {
-    id: 3,
-    name: "Robert Sterling",
-    role: "Art Collector",
-    image: "/assets/images/robert-sterling.svg",
-    quote:
-      "I've worked with many real estate firms, but Extrovate's commitment to 'The Frame' aesthetic and their transparent communication sets them in a league of their own.",
-  },
-  {
-    id: 4,
-    name: "Sophia Bennett",
-    role: "Business Owner",
-    image: "/assets/images/",
-    quote:
-      "The professionalism and market expertise demonstrated by the team made our investment journey seamless and rewarding.",
-  },
-  {
-    id: 5,
-    name: "Ethan Hayes",
-    role: "Investor",
-    image: "/assets/images/",
-    quote:
-      "Their strategic advice and personalized support exceeded expectations. I would highly recommend Extrovate to anyone.",
-  },
-  {
-    id: 6,
-    name: "Emma Wilson",
-    role: "Architect",
-    image: "/assets/images/",
-    quote:
-      "Every interaction reflected their commitment to quality and transparency. A truly premium experience from start to finish.",
-  },
-];
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
+
+function subscribeToReducedMotion(onChange: () => void) {
+  const media = window.matchMedia(reducedMotionQuery);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+
+function getReducedMotionPreference() {
+  return window.matchMedia(reducedMotionQuery).matches;
+}
 
 export default function TestimonialsSection() {
-  const plugin = useRef(
+  const isSample = approvedTestimonials.length === 0;
+  const testimonials = isSample ? demoTestimonials : approvedTestimonials;
+  const reducedMotion = useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionPreference,
+    () => false,
+  );
+  const [autoplay] = useState(() =>
     Autoplay({
-      delay: 3000,
-      stopOnInteraction: true,
+      delay: 5000,
+      stopOnInteraction: false,
       stopOnMouseEnter: true,
+      stopOnFocusIn: true,
     }),
   );
 
   return (
-    <section className="bg-background py-20 md:py-24">
+    <section className="bg-muted py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-6">
-        {/* Header */}
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[4px] text-secondary">
-            CLIENT PERSPECTIVES
-          </p>
-
-          <h2 className="font-montserrat mt-4 text-4xl font-bold text-foreground md:text-5xl">
+          <p className="eyebrow">Client perspectives</p>
+          <h2 className="mt-3 text-3xl font-semibold text-primary sm:text-4xl">
             Stories of Satisfaction
           </h2>
-
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Hear from our clients about their exceptional experiences with
-            Extrovate Solutions and discover why we remain their trusted partner
-            in luxury real estate.
-          </p>
+          {isSample && (
+            <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground">
+              Sample testimonials for layout preview. These are not verified client endorsements.
+            </p>
+          )}
         </div>
 
-        {/* Carousel */}
-        <div className="relative mt-16">
-          <Carousel
-            plugins={[plugin.current]}
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {testimonials.map((testimonial) => (
-                <CarouselItem
-                  key={testimonial.id}
-                  className="flex basis-full md:basis-1/2 lg:basis-1/3"
+        <Carousel
+          opts={{ align: "start", loop: testimonials.length > 1, slidesToScroll: 1 }}
+          plugins={reducedMotion || testimonials.length < 2 ? [] : [autoplay]}
+          tabIndex={0}
+          aria-label={isSample ? "Sample testimonial carousel" : "Client testimonial carousel"}
+          className="mt-10 outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+        >
+          <CarouselContent className="-ml-4 pb-4">
+            {testimonials.map((testimonial) => (
+              <CarouselItem
+                key={testimonial.id}
+                className="basis-[92%] pl-4 sm:basis-1/2 lg:basis-1/3"
+              >
+                <blockquote
+                  className={`flex h-full min-h-64 flex-col border bg-card p-7 shadow-sm ${
+                    testimonial.featured ? "border-t-4 border-t-secondary" : "border-border"
+                  }`}
                 >
-                  <div
-                    className={`
-                      relative flex h-full w-full flex-col rounded-2xl
-                      border border-border bg-card p-8 shadow-sm
-                      transition-all duration-300
-                      hover:-translate-y-2 hover:shadow-2xl
-                      ${
-                        testimonial.featured
-                          ? "border-t-4 border-secondary"
-                          : ""
-                      }
-                    `}
-                  >
-                    {/* Quote Icon */}
-                    <div className="absolute right-6 top-6">
-                      <Quote size={28} className="text-secondary/40" />
+                  <Quote size={25} aria-hidden="true" className="ml-auto text-secondary/50" />
+                  <p className="mt-3 flex-1 text-sm leading-6 text-foreground/80">
+                    “{testimonial.quote}”
+                  </p>
+                  <footer className="mt-7 flex items-center gap-3">
+                    <Image
+                      src={testimonial.image}
+                      alt=""
+                      width={44}
+                      height={44}
+                      className="size-11 rounded-full object-cover"
+                    />
+                    <div>
+                      <cite className="not-italic text-sm font-semibold text-primary">
+                        {testimonial.name}
+                      </cite>
+                      <p className="text-xs text-muted-foreground">{testimonial.role}</p>
                     </div>
-
-                    {/* Quote */}
-                    <p className="min-h-[180px] flex-1 italic leading-8 text-muted-foreground">
-                      &quot;{testimonial.quote}&quot;
-                    </p>
-
-                    {/* User */}
-                    <div className="mt-8 flex items-center gap-4">
-                      <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-secondary/20">
-                        <Image
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          fill
-                          className="object-cover transition-transform duration-500 hover:scale-110"
-                        />
-                      </div>
-
-                      <div>
-                        <h3 className="font-montserrat font-semibold text-foreground">
-                          {testimonial.name}
-                        </h3>
-
-                        <p className="text-sm text-muted-foreground">
-                          {testimonial.role}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            {/* Desktop Navigation */}
-            <CarouselPrevious className="-left-5 hidden border-border bg-card text-foreground lg:flex" />
-
-            <CarouselNext className="-right-5 hidden border-border bg-card text-foreground lg:flex" />
-
-            {/* Mobile Navigation */}
-            <div className="mt-8 flex justify-center gap-4 lg:hidden">
-              <CarouselPrevious className="static translate-y-0 border-border bg-card text-foreground" />
-
-              <CarouselNext className="static translate-y-0 border-border bg-card text-foreground" />
-            </div>
-          </Carousel>
-        </div>
+                  </footer>
+                </blockquote>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="mt-4 flex justify-center gap-3">
+            <CarouselPrevious
+              className="static size-10 translate-y-0 border-primary/20 bg-card text-primary"
+              aria-label="Previous testimonial"
+            />
+            <CarouselNext
+              className="static size-10 translate-y-0 border-primary/20 bg-card text-primary"
+              aria-label="Next testimonial"
+            />
+          </div>
+        </Carousel>
       </div>
     </section>
   );
