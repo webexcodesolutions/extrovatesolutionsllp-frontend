@@ -2,8 +2,7 @@
 
 import { useId, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
-import { Clock3, Mail, MapPin, Phone } from "lucide-react";
-import { site } from "@/lib/site";
+import { Aperture, Mail, MapPin, Phone, Share2, UsersRound } from "lucide-react";
 import { PROPERTY_TYPES } from "@/lib/property-schema";
 import { inquirySchema } from "@/lib/forms";
 
@@ -15,7 +14,16 @@ type FormState = {
 };
 
 const inputClasses =
-  "min-h-12 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/15";
+  "min-h-12 w-full rounded-lg border border-input bg-white px-4 text-base text-foreground placeholder:text-muted-foreground/80 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/15";
+
+// Sample contact details supplied in the design reference; replace when final details are approved.
+const referenceContact = {
+  address: ["122nd Floor, Burj Khalifa Business Suites,", "Downtown Dubai, UAE"],
+  phones: ["+971 4 555 0192", "+971 50 123 4567"],
+  emails: ["enquiries@extrovate.com", "support@extrovate.com"],
+};
+
+const fieldLabelClasses = "block text-sm font-medium uppercase tracking-[.04em] text-[#454b52]";
 
 export function ContactSection({
   propertySlug,
@@ -103,7 +111,7 @@ export function ContactSection({
     autoComplete?: string,
   ) => (
     <div className="space-y-2">
-      <label htmlFor={`${id}-${name}`} className="block text-xs font-semibold uppercase tracking-[.12em] text-foreground">
+      <label htmlFor={`${id}-${name}`} className={fieldLabelClasses}>
         {label}
       </label>
       <input
@@ -143,79 +151,86 @@ export function ContactSection({
       </section>
 
       <section className="bg-background py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl items-start gap-10 px-6 lg:grid-cols-[minmax(250px,0.8fr)_minmax(0,1.7fr)] lg:gap-14">
-          <aside className="space-y-9">
+        <div className="mx-auto grid max-w-7xl items-start gap-10 px-6 sm:px-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.6fr)] lg:gap-6">
+          <aside>
             <div>
-              <h2 className="text-xl font-semibold text-primary">Contact Information</h2>
-              <div className="mt-7 space-y-6">
-                {site.address && (
-                  <div className="flex items-start gap-4">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-primary">
-                      <MapPin size={18} aria-hidden="true" />
-                    </span>
-                    <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-[.12em]">Our office</h3>
-                      <p className="mt-1 whitespace-pre-line text-sm leading-6 text-muted-foreground">{site.address}</p>
-                    </div>
+              <h2 className="text-2xl font-semibold text-primary">Contact Information</h2>
+              <div className="mt-8 space-y-6">
+                <div className="flex items-start gap-4">
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#cae6ff] text-primary">
+                    <MapPin size={20} aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h3 className={fieldLabelClasses}>Our office</h3>
+                    <p className="mt-1 text-base leading-6 text-foreground">
+                      {referenceContact.address.map((line) => <span className="block" key={line}>{line}</span>)}
+                    </p>
                   </div>
-                )}
-                {site.phone && (
-                  <div className="flex items-start gap-4">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-primary">
-                      <Phone size={18} aria-hidden="true" />
-                    </span>
-                    <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-[.12em]">Phone</h3>
-                      <a className="mt-1 block text-sm leading-6 text-muted-foreground hover:text-primary hover:underline" href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}>
-                        {site.phone}
+                </div>
+                <div className="flex items-start gap-4">
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#cae6ff] text-primary">
+                    <Phone size={20} aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h3 className={fieldLabelClasses}>Phone</h3>
+                    {referenceContact.phones.map((phone) => (
+                      <a className="block text-base leading-6 text-foreground hover:text-primary hover:underline" href={`tel:${phone.replace(/[^+\d]/g, "")}`} key={phone}>
+                        {phone}
                       </a>
-                    </div>
+                    ))}
                   </div>
-                )}
-                {site.email && (
-                  <div className="flex items-start gap-4">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-primary">
-                      <Mail size={18} aria-hidden="true" />
-                    </span>
-                    <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-[.12em]">Email</h3>
-                      <a className="mt-1 block break-all text-sm leading-6 text-muted-foreground hover:text-primary hover:underline" href={`mailto:${site.email}`}>
-                        {site.email}
+                </div>
+                <div className="flex items-start gap-4">
+                  <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#cae6ff] text-primary">
+                    <Mail size={20} aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h3 className={fieldLabelClasses}>Email</h3>
+                    {referenceContact.emails.map((email) => (
+                      <a className="block break-all text-base leading-6 text-foreground hover:text-primary hover:underline" href={`mailto:${email}`} key={email}>
+                        {email}
                       </a>
-                    </div>
+                    ))}
                   </div>
-                )}
-                {!site.address && !site.phone && !site.email && (
-                  <p className="text-sm leading-6 text-muted-foreground">
-                    Send us a message using the form and our team will respond.
-                  </p>
-                )}
+                </div>
               </div>
             </div>
 
-            <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
-              <div className="flex items-center gap-3 text-primary">
-                <Clock3 size={19} aria-hidden="true" />
-                <h3 className="text-lg font-semibold">Plan a Visit</h3>
+            <div className="mt-10 rounded-xl bg-[#f6f4f3] p-7 shadow-sm sm:p-8">
+              <h3 className="text-2xl font-semibold text-primary">Office Hours</h3>
+              <dl className="mt-5 text-sm sm:text-base">
+                <div className="flex justify-between gap-2 border-b border-[#d1d6d9] py-3">
+                  <dt>Monday - Friday</dt><dd className="text-right text-primary">09:00 AM - 06:00 PM</dd>
+                </div>
+                <div className="flex justify-between gap-2 border-b border-[#d1d6d9] py-3">
+                  <dt>Saturday</dt><dd className="text-right text-primary">10:00 AM - 04:00 PM</dd>
+                </div>
+                <div className="flex justify-between gap-2 pt-3">
+                  <dt>Sunday</dt><dd className="text-right text-red-600">Closed</dd>
+                </div>
+              </dl>
+            </div>
+            <div className="mt-9">
+              <h3 className={fieldLabelClasses}>Follow us</h3>
+              <div className="mt-3 flex gap-3" aria-hidden="true">
+                {[Share2, Aperture, UsersRound].map((Icon, index) => (
+                  <span className="flex size-10 items-center justify-center rounded-full border border-input text-primary" key={index}>
+                    <Icon size={20} />
+                  </span>
+                ))}
               </div>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                Contact us to arrange a conversation or ask for office directions.
-              </p>
-              <a href="#contact-form" className="mt-4 inline-flex min-h-10 items-center text-sm font-semibold text-primary underline underline-offset-4">
-                Send an inquiry
-              </a>
             </div>
           </aside>
 
           <form
             id="contact-form"
             onSubmit={submit}
-            className="rounded-lg border border-border bg-card p-6 shadow-lg shadow-primary/5 sm:p-9 lg:p-11"
+            className="rounded-xl border border-border bg-white p-7 shadow-lg shadow-primary/5 sm:p-10 lg:p-14"
             aria-busy={state.loading}
           >
-            <h2 className="text-2xl font-semibold text-primary sm:text-3xl">Send a Message</h2>
-            <p className="mt-2 max-w-lg text-sm leading-6 text-muted-foreground">
-              Fill out the form below and our team will get back to you about your inquiry.
+            <h2 className="text-3xl font-semibold text-primary sm:text-4xl">Send a Message</h2>
+            <p className="mt-4 max-w-2xl text-base leading-6 text-[#454b52]">
+              Fill out the form below and one of our expert consultants will get back to you within 24 hours.
             </p>
             {propertyTitle && propertySlug && (
               <p className="mt-4 rounded-md bg-accent px-4 py-3 text-sm text-primary">
@@ -223,12 +238,12 @@ export function ContactSection({
               </p>
             )}
 
-            <div className="mt-8 grid gap-5 sm:grid-cols-2">
-              {field("name", "Full name", "Your full name", "text", "name")}
-              {field("email", "Email address", "you@example.com", "email", "email")}
-              {field("phone", "Phone number", "Enter your phone number", "tel", "tel")}
+            <div className="mt-10 grid gap-x-6 gap-y-8 sm:grid-cols-2">
+              {field("name", "Full name", "John Doe", "text", "name")}
+              {field("email", "Email address", "john@example.com", "email", "email")}
+              {field("phone", "Phone number", "+1 (555) 000-0000", "tel", "tel")}
               <div className="space-y-2">
-                <label htmlFor={`${id}-interest`} className="block text-xs font-semibold uppercase tracking-[.12em]">
+                <label htmlFor={`${id}-interest`} className={fieldLabelClasses}>
                   Interest
                 </label>
                 <select
@@ -240,7 +255,7 @@ export function ContactSection({
                   aria-invalid={!!state.fields.interest}
                   aria-describedby={state.fields.interest ? `${id}-interest-error` : undefined}
                 >
-                  <option value="" disabled>Select property type</option>
+                  <option value="" disabled>Select Property Type</option>
                   {[...PROPERTY_TYPES, "Loan assistance", "General inquiry"].map((value) => (
                     <option key={value} value={value}>{value}</option>
                   ))}
@@ -253,8 +268,8 @@ export function ContactSection({
               </div>
             </div>
 
-            <div className="mt-5 space-y-2">
-              <label className="block text-xs font-semibold uppercase tracking-[.12em]" htmlFor={`${id}-message`}>
+            <div className="mt-8 space-y-2">
+              <label className={fieldLabelClasses} htmlFor={`${id}-message`}>
                 Your message
               </label>
               <textarea
@@ -264,30 +279,29 @@ export function ContactSection({
                 minLength={10}
                 maxLength={2000}
                 rows={5}
-                placeholder="Tell us about your project or inquiry..."
-                className={`${inputClasses} resize-y py-3`}
+                placeholder="Tell us about your project or enquiry..."
+                className={`${inputClasses} min-h-[140px] resize-y py-3`}
                 aria-invalid={!!state.fields.message}
-                aria-describedby={`${id}-message-help`}
+                aria-describedby={state.fields.message ? `${id}-message-error` : `${id}-message-help`}
               />
-              <p id={`${id}-message-help`} className={state.fields.message ? "text-sm text-destructive" : "text-xs text-muted-foreground"}>
-                {state.fields.message?.join(" ") || "10–2,000 characters. Please do not include financial account details."}
-              </p>
+              <p id={`${id}-message-help`} className="sr-only">10–2,000 characters. Please do not include financial account details.</p>
+              {state.fields.message && <p id={`${id}-message-error`} className="text-sm text-destructive">{state.fields.message.join(" ")}</p>}
             </div>
 
             <div hidden aria-hidden="true">
               <label>Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label>
             </div>
-            <label className="mt-5 flex items-start gap-3 text-sm leading-6 text-muted-foreground">
-              <input name="consent" type="checkbox" required className="mt-0.5 size-4 shrink-0 accent-primary" />
+            <label className="mt-8 flex items-start gap-3 text-sm leading-6 text-[#454b52] sm:text-base">
+              <input name="consent" type="checkbox" required className="mt-1 size-5 shrink-0 accent-primary" />
               <span>
                 I agree to the <Link href="/privacy-policy" className="text-secondary-ink underline underline-offset-2">Privacy Policy</Link> and{" "}
-                <Link href="/terms-of-service" className="text-secondary-ink underline underline-offset-2">Terms of Service</Link> and consent to being contacted about this inquiry.
+                <Link href="/terms-of-service" className="hover:underline hover:underline-offset-2">terms of service</Link>.
               </span>
             </label>
             <button
               disabled={state.loading}
               type="submit"
-              className="brand-gold-button mt-7 inline-flex min-h-12 items-center justify-center rounded-sm px-8 text-xs font-semibold uppercase tracking-[.12em] transition-colors disabled:opacity-60"
+              className="brand-gold-button mt-7 inline-flex min-h-14 min-w-60 items-center justify-center rounded-lg px-8 text-sm font-medium uppercase tracking-[.1em] transition-colors disabled:opacity-60"
             >
               {state.loading ? "Submitting…" : "Submit inquiry"}
             </button>
@@ -301,27 +315,14 @@ export function ContactSection({
       </section>
 
       <section aria-label="Office location" className="relative h-72 overflow-hidden bg-muted sm:h-96">
-        {site.address ? (
-          <iframe
-            title="Map showing our office location"
-            src={`https://www.google.com/maps?q=${encodeURIComponent(site.address)}&output=embed`}
-            className="h-full w-full border-0"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        ) : (
-          <div className="flex h-full items-center justify-center bg-[url('/contact-map.svg')] bg-cover bg-center px-6">
-            <div className="rounded-md border border-white/80 bg-white/95 px-6 py-5 text-center shadow-lg">
-              <span className="mx-auto flex size-11 items-center justify-center rounded-full bg-primary text-white">
-                <MapPin size={20} aria-hidden="true" />
-              </span>
-              <p className="mt-3 text-sm font-semibold text-primary">Need directions?</p>
-              <a href="#contact-form" className="mt-1 inline-block text-xs text-muted-foreground underline underline-offset-2 hover:text-primary">
-                Ask us about visiting the office
-              </a>
-            </div>
+        <div className="flex h-full items-center justify-center bg-[url('/contact-map.svg')] bg-cover bg-center px-6">
+          <div className="rounded-md border border-white/80 bg-white/95 px-6 py-5 text-center shadow-lg">
+            <span className="mx-auto flex size-11 items-center justify-center rounded-full bg-primary text-white">
+              <MapPin size={20} aria-hidden="true" />
+            </span>
+            <p className="mt-3 text-sm font-semibold text-primary">Extrovate Solutions LLP</p>
           </div>
-        )}
+        </div>
       </section>
     </>
   );
