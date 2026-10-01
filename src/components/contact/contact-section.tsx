@@ -20,9 +20,11 @@ const inputClasses =
 export function ContactSection({
   propertySlug,
   propertyTitle,
+  defaultInterest,
 }: {
   propertySlug?: string;
   propertyTitle?: string;
+  defaultInterest?: string;
 }) {
   const id = useId();
   const pending = useRef(false);
@@ -101,7 +103,7 @@ export function ContactSection({
     autoComplete?: string,
   ) => (
     <div className="space-y-2">
-      <label htmlFor={`${id}-${name}`} className="block text-[11px] font-semibold uppercase tracking-[.12em] text-foreground">
+      <label htmlFor={`${id}-${name}`} className="block text-xs font-semibold uppercase tracking-[.12em] text-foreground">
         {label}
       </label>
       <input
@@ -129,7 +131,7 @@ export function ContactSection({
     <>
       <section className="bg-primary text-white">
         <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:py-24">
-          <p className="eyebrow text-[#d9b947]">Get in touch</p>
+          <p className="eyebrow eyebrow-on-dark">Get in touch</p>
           <h1 className="mt-4 max-w-2xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
             Let’s Frame Your Future.
           </h1>
@@ -148,22 +150,22 @@ export function ContactSection({
               <div className="mt-7 space-y-6">
                 {site.address && (
                   <div className="flex items-start gap-4">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#dcecf5] text-primary">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-primary">
                       <MapPin size={18} aria-hidden="true" />
                     </span>
                     <div>
-                      <h3 className="text-[11px] font-semibold uppercase tracking-[.12em]">Our office</h3>
+                      <h3 className="text-xs font-semibold uppercase tracking-[.12em]">Our office</h3>
                       <p className="mt-1 whitespace-pre-line text-sm leading-6 text-muted-foreground">{site.address}</p>
                     </div>
                   </div>
                 )}
                 {site.phone && (
                   <div className="flex items-start gap-4">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#dcecf5] text-primary">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-primary">
                       <Phone size={18} aria-hidden="true" />
                     </span>
                     <div>
-                      <h3 className="text-[11px] font-semibold uppercase tracking-[.12em]">Phone</h3>
+                      <h3 className="text-xs font-semibold uppercase tracking-[.12em]">Phone</h3>
                       <a className="mt-1 block text-sm leading-6 text-muted-foreground hover:text-primary hover:underline" href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}>
                         {site.phone}
                       </a>
@@ -172,11 +174,11 @@ export function ContactSection({
                 )}
                 {site.email && (
                   <div className="flex items-start gap-4">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#dcecf5] text-primary">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-primary">
                       <Mail size={18} aria-hidden="true" />
                     </span>
                     <div>
-                      <h3 className="text-[11px] font-semibold uppercase tracking-[.12em]">Email</h3>
+                      <h3 className="text-xs font-semibold uppercase tracking-[.12em]">Email</h3>
                       <a className="mt-1 block break-all text-sm leading-6 text-muted-foreground hover:text-primary hover:underline" href={`mailto:${site.email}`}>
                         {site.email}
                       </a>
@@ -208,7 +210,7 @@ export function ContactSection({
           <form
             id="contact-form"
             onSubmit={submit}
-            className="rounded-lg border border-border bg-card p-6 shadow-[0_12px_40px_rgba(19,63,90,.06)] sm:p-9 lg:p-11"
+            className="rounded-lg border border-border bg-card p-6 shadow-lg shadow-primary/5 sm:p-9 lg:p-11"
             aria-busy={state.loading}
           >
             <h2 className="text-2xl font-semibold text-primary sm:text-3xl">Send a Message</h2>
@@ -224,16 +226,16 @@ export function ContactSection({
             <div className="mt-8 grid gap-5 sm:grid-cols-2">
               {field("name", "Full name", "Your full name", "text", "name")}
               {field("email", "Email address", "you@example.com", "email", "email")}
-              {field("phone", "Phone number", "+1 555 000 0000", "tel", "tel")}
+              {field("phone", "Phone number", "Enter your phone number", "tel", "tel")}
               <div className="space-y-2">
-                <label htmlFor={`${id}-interest`} className="block text-[11px] font-semibold uppercase tracking-[.12em]">
+                <label htmlFor={`${id}-interest`} className="block text-xs font-semibold uppercase tracking-[.12em]">
                   Interest
                 </label>
                 <select
                   id={`${id}-interest`}
                   name="interest"
                   required
-                  defaultValue=""
+                  defaultValue={defaultInterest || ""}
                   className={inputClasses}
                   aria-invalid={!!state.fields.interest}
                   aria-describedby={state.fields.interest ? `${id}-interest-error` : undefined}
@@ -252,7 +254,7 @@ export function ContactSection({
             </div>
 
             <div className="mt-5 space-y-2">
-              <label className="block text-[11px] font-semibold uppercase tracking-[.12em]" htmlFor={`${id}-message`}>
+              <label className="block text-xs font-semibold uppercase tracking-[.12em]" htmlFor={`${id}-message`}>
                 Your message
               </label>
               <textarea
@@ -275,17 +277,17 @@ export function ContactSection({
             <div hidden aria-hidden="true">
               <label>Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label>
             </div>
-            <label className="mt-5 flex items-start gap-3 text-xs leading-5 text-muted-foreground">
+            <label className="mt-5 flex items-start gap-3 text-sm leading-6 text-muted-foreground">
               <input name="consent" type="checkbox" required className="mt-0.5 size-4 shrink-0 accent-primary" />
               <span>
-                I agree to the <Link href="/privacy-policy" className="text-secondary underline underline-offset-2">Privacy Policy</Link> and{" "}
-                <Link href="/terms-of-service" className="text-secondary underline underline-offset-2">Terms of Service</Link> and consent to being contacted about this inquiry.
+                I agree to the <Link href="/privacy-policy" className="text-secondary-ink underline underline-offset-2">Privacy Policy</Link> and{" "}
+                <Link href="/terms-of-service" className="text-secondary-ink underline underline-offset-2">Terms of Service</Link> and consent to being contacted about this inquiry.
               </span>
             </label>
             <button
               disabled={state.loading}
               type="submit"
-              className="mt-7 inline-flex min-h-12 items-center justify-center rounded-sm bg-[#ba9b30] px-8 text-xs font-semibold uppercase tracking-[.12em] text-[#152e3f] transition-colors hover:bg-[#d2b24b] disabled:opacity-60"
+              className="brand-gold-button mt-7 inline-flex min-h-12 items-center justify-center rounded-sm px-8 text-xs font-semibold uppercase tracking-[.12em] transition-colors disabled:opacity-60"
             >
               {state.loading ? "Submitting…" : "Submit inquiry"}
             </button>
@@ -298,7 +300,7 @@ export function ContactSection({
         </div>
       </section>
 
-      <section aria-label="Office location" className="relative h-72 overflow-hidden bg-[#e6e7e5] sm:h-96">
+      <section aria-label="Office location" className="relative h-72 overflow-hidden bg-muted sm:h-96">
         {site.address ? (
           <iframe
             title="Map showing our office location"

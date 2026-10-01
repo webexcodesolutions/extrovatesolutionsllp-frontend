@@ -8,7 +8,7 @@ export function AboutStory() {
     <>
       {/* Our Narrative */}
       <section className="bg-background">
-        <div className="mx-auto max-w-[1280px] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-12 xl:gap-16">
             {/* Image */}
             <div className="relative border border-border p-2">
@@ -25,17 +25,17 @@ export function AboutStory() {
 
             {/* Content */}
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[2px] text-secondary">
+              <p className="eyebrow">
                 Our Narrative
               </p>
 
-              <h2 className="mt-3 max-w-[520px] text-[30px] font-semibold leading-[1.12] tracking-[-0.7px] text-foreground sm:text-[34px]">
+              <h2 className="mt-3 max-w-[520px] text-3xl font-semibold leading-tight tracking-tight text-primary sm:text-4xl">
                 A Journey Rooted in
                 <br className="hidden sm:block" />
                 Architectural Precision
               </h2>
 
-              <div className="mt-5 max-w-[570px] space-y-4 text-sm leading-[1.65] text-muted-foreground sm:text-[12px]">
+              <div className="mt-5 max-w-[570px] space-y-4 text-base leading-7 text-muted-foreground">
                 <p>
                   We help people explore residential and commercial properties,
                   understand their options, and plan the next steps in their search.
@@ -53,7 +53,7 @@ export function AboutStory() {
 
       {/* Mission / Vision */}
       <section className="bg-muted">
-        <div className="mx-auto max-w-[1280px] px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+        <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
           <div className="grid gap-5 md:grid-cols-2 lg:gap-6">
             <AboutValueCard icon={Building2} title="Our Mission">
               To provide sophisticated real estate solutions that maximize value
@@ -93,12 +93,12 @@ function AboutValueCard({
         </div>
 
         {/* Title */}
-        <h3 className="mt-5 text-[17px] font-semibold text-foreground">
+        <h3 className="mt-5 text-lg font-semibold text-primary">
           {title}
         </h3>
 
         {/* Description */}
-        <p className="mt-3 max-w-[520px] text-sm leading-[1.7] text-muted-foreground sm:text-[12px]">
+        <p className="mt-3 max-w-[520px] text-base leading-7 text-muted-foreground">
           {children}
         </p>
       </CardContent>

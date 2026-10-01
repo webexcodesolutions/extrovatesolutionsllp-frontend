@@ -8,12 +8,12 @@ export function AboutCta() {
       <div className="absolute inset-0 bg-primary/85" />
 
       {/* Content */}
-      <div className="relative mx-auto flex min-h-[240px] max-w-[1280px] flex-col items-center justify-center px-5 py-12 text-center sm:min-h-[270px] sm:px-8 lg:px-10">
-        <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.5px] text-white sm:text-[32px]">
+      <div className="relative mx-auto flex min-h-[240px] max-w-7xl flex-col items-center justify-center px-6 py-12 text-center sm:min-h-[270px]">
+        <h2 className="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">
           Ready to Define Your Legacy?
         </h2>
 
-        <p className="mt-4 max-w-[460px] text-sm leading-[1.55] text-white/85 sm:text-[12px]">
+        <p className="mt-4 max-w-[460px] text-sm leading-6 text-white/85 sm:text-base">
           Connect with our team to discuss your requirements and
           <br className="hidden sm:block" />
           explore available properties.
@@ -23,7 +23,7 @@ export function AboutCta() {
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
           <Link
             href="/contact-us"
-            className="flex min-h-11 min-w-[185px] items-center justify-center bg-secondary px-6 text-xs font-semibold uppercase tracking-[1px] text-white transition-colors hover:bg-[#b99421]"
+            className="brand-gold-button flex min-h-11 min-w-[185px] items-center justify-center px-6 text-xs font-semibold uppercase tracking-[1px] transition-colors"
           >
             Consult Your Expert
           </Link>

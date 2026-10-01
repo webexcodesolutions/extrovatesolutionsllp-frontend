@@ -28,7 +28,9 @@ export default async function ProjectsPage({
     return (
       <>
         <CuratedPortfolioIntro />
-        <PropertyFilters filters={{}} />
+        <div className="mx-auto max-w-7xl px-6 py-8">
+          <PropertyFilters filters={{}} />
+        </div>
         <p role="alert" className="mx-auto max-w-7xl p-6">
           Check your filters: budgets must be nonnegative, minimum cannot exceed
           maximum, and the page must be a positive whole number.
@@ -46,7 +48,9 @@ export default async function ProjectsPage({
   return (
     <>
       <CuratedPortfolioIntro />
-      <PropertyFilters filters={filters} budget={query.budget} />
+      <div className="mx-auto max-w-7xl px-6 py-8">
+        <PropertyFilters filters={filters} budget={query.budget} />
+      </div>
       {data ? (
         <ProjectsListing data={data} query={query} />
       ) : (

@@ -66,7 +66,7 @@ export function PropertyCard({
             {title}
           </h3>
 
-          <span className="shrink-0 text-xl font-bold text-secondary">
+          <span className="shrink-0 text-xl font-bold text-secondary-ink">
             {price}
           </span>
         </div>
@@ -90,7 +90,7 @@ export function PropertyCard({
                   <Icon
                     size={16}
                     strokeWidth={1.8}
-                    className="text-secondary"
+                    className="text-secondary-ink"
                   />
 
                   <span>{feature.label}</span>

@@ -7,9 +7,9 @@ export function MilestoneJourney() {
   if (!milestones.length) return null;
   return (
     <section className="bg-card">
-      <div className="mx-auto max-w-[1280px] px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
         {/* Heading */}
-        <h2 className="text-center text-[28px] font-semibold tracking-[-0.5px] text-foreground sm:text-[32px]">
+        <h2 className="text-center text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
           Our Milestone Journey
         </h2>
 
@@ -75,7 +75,7 @@ function Milestone({
               {year}
             </div>
 
-            <h3 className="mt-[-3px] text-[15px] font-semibold text-foreground sm:text-[16px]">
+            <h3 className="mt-[-3px] text-base font-semibold text-primary">
               {title}
             </h3>
 

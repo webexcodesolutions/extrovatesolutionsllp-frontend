@@ -68,9 +68,9 @@ export function PropertyCard({
   actionLabel = "VIEW DETAILS",
 }: PropertyCardProps) {
   return (
-    <Card className="group flex h-full flex-col overflow-hidden rounded-xl border-border bg-card p-0 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <Card className="group flex h-full flex-col overflow-hidden rounded-sm border-border bg-card p-0 shadow-lg shadow-primary/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-primary/10">
       {/* Image */}
-      <div className="relative h-[150px] overflow-hidden sm:h-[160px]">
+      <div className="relative aspect-[1.5/1] w-full overflow-hidden">
         <Image
           src={image}
           alt={title}
@@ -92,11 +92,11 @@ export function PropertyCard({
       <CardContent className="flex flex-1 flex-col p-4">
         {/* Title + Price */}
         <div className="flex items-start justify-between gap-3">
-          <h3 className="min-w-0 truncate text-[16px] font-semibold leading-5 text-foreground">
+          <h3 className="min-w-0 truncate text-base font-semibold leading-5 text-primary">
             {title}
           </h3>
 
-          <span className="shrink-0 text-[12px] font-bold text-secondary">
+          <span className="shrink-0 text-sm font-bold text-secondary-ink">
             {price}
           </span>
         </div>

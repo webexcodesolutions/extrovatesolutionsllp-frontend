@@ -1,10 +1,10 @@
 export function AboutHero() {
   return (
     <section className="bg-primary text-white">
-      <div className="mx-auto flex min-h-[540px] max-w-[1536px] items-center px-10 py-20 sm:px-12 lg:px-16 xl:px-20">
+      <div className="mx-auto flex min-h-[420px] max-w-7xl items-center px-6 py-20 sm:min-h-[480px]">
         <div className="max-w-[900px]">
           {/* Eyebrow */}
-          <p className="text-[14px] font-semibold uppercase tracking-[2px] text-secondary sm:text-[16px]">
+          <p className="eyebrow eyebrow-on-dark">
             About Us
           </p>
 
@@ -12,14 +12,14 @@ export function AboutHero() {
           <div className="mt-5 h-[3px] w-14 bg-secondary" />
 
           {/* Heading */}
-          <h1 className="mt-8 max-w-[900px] text-[48px] font-bold leading-[1.05] tracking-[-1.8px] sm:text-[60px] md:text-[68px] lg:text-[76px]">
+          <h1 className="mt-8 max-w-[900px] text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
             Building Legacies,
             <br />
             Defining Excellence.
           </h1>
 
           {/* Description */}
-          <p className="mt-8 max-w-[820px] text-[18px] leading-[1.75] text-white/80 sm:text-[20px]">
+          <p className="mt-8 max-w-[820px] text-base leading-7 text-white/85 sm:text-lg">
             Extrovate Solutions LLP is more than a real estate firm; we are
             architects of aspiration and
             <br className="hidden md:block" />

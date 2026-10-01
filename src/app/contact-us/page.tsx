@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 export default async function ContactUs({
   searchParams,
 }: {
-  searchParams: Promise<{ property?: string }>;
+  searchParams: Promise<{ property?: string; interest?: string }>;
 }) {
-  const { property } = await searchParams;
+  const { property, interest } = await searchParams;
   let item;
 
   if (property && slugSchema.safeParse(property).success) {
@@ -31,7 +31,11 @@ export default async function ContactUs({
           The selected property is unavailable. You can still send a general inquiry.
         </p>
       )}
-      <ContactSection propertySlug={item?.slug} propertyTitle={item?.title} />
+      <ContactSection
+        propertySlug={item?.slug}
+        propertyTitle={item?.title}
+        defaultInterest={interest === "Loan assistance" ? interest : undefined}
+      />
       <CTASection primaryHref="#contact-form" />
     </>
   );

@@ -32,14 +32,14 @@ const principles = [
 export function CorePrinciples() {
   return (
     <section className="bg-background">
-      <div className="mx-auto max-w-[1280px] px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
         {/* Section Heading */}
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[2px] text-secondary">
+          <p className="eyebrow">
             Core Principles
           </p>
 
-          <h2 className="mt-3 text-[28px] font-semibold leading-tight tracking-[-0.5px] text-foreground sm:text-[32px]">
+          <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-primary sm:text-4xl">
             The Pillars of Our Success
           </h2>
         </div>
@@ -74,7 +74,7 @@ function PrincipleCard({
     return (
       <Card className="group relative overflow-hidden rounded-none border-0 bg-primary shadow-none lg:col-span-6 lg:row-span-1">
         <CardContent className="flex h-full flex-col justify-between p-6 sm:p-7">
-          <Icon className="h-7 w-7 text-[#e5c568]" strokeWidth={1.6} />
+          <Icon className="h-7 w-7 text-secondary-light" strokeWidth={1.6} />
 
           <div>
             <h3 className="text-[16px] font-semibold text-white">{title}</h3>

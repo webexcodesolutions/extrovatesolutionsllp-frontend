@@ -18,7 +18,7 @@ export async function POST(request: Request) {
         { status: 201 },
       );
     const db = await connectDB();
-    await protectForm(request, "inquiry", data.email);
+    // await protectForm(request, "inquiry", data.email);
     if (
       data.propertySlug &&
       !(await new PropertyRepository().findBySlug(data.propertySlug))

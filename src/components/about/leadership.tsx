@@ -7,14 +7,14 @@ export function Leadership() {
   if (!leaders.length) return null;
   return (
     <section className="bg-background">
-      <div className="mx-auto max-w-[1280px] px-5 py-14 sm:px-8 lg:px-10 lg:py-16">
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20">
         {/* Header */}
         <div className="mx-auto max-w-[650px] text-center">
-          <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.5px] text-foreground sm:text-[32px]">
+          <h2 className="text-3xl font-semibold leading-tight tracking-tight text-primary sm:text-4xl">
             Leadership at the Helm
           </h2>
 
-          <p className="mt-3 text-sm leading-[1.6] text-muted-foreground sm:text-[12px]">
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
             Our leadership team brings together decades of expertise in
             architecture, finance, and
             <br className="hidden sm:block" />
@@ -53,7 +53,7 @@ function LeaderCard({ name, role, image }: Leader) {
           {name}
         </h3>
 
-        <p className="mt-1.5 text-xs font-semibold uppercase tracking-[1px] text-secondary">
+        <p className="mt-1.5 text-xs font-semibold uppercase tracking-[1px] text-secondary-ink">
           {role}
         </p>
       </div>
